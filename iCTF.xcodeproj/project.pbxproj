@@ -7,6 +7,92 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3592A6EF1466CC8700C60346 /* SDZArrayOf_tns1_AssociationSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6421466CC8600C60346 /* SDZArrayOf_tns1_AssociationSoapRow.m */; };
+		3592A6F01466CC8700C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6441466CC8600C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.m */; };
+		3592A6F11466CC8700C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6461466CC8600C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.m */; };
+		3592A6F21466CC8700C60346 /* SDZArrayOf_tns1_CommentSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6481466CC8600C60346 /* SDZArrayOf_tns1_CommentSoapRow.m */; };
+		3592A6F31466CC8700C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A64A1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m */; };
+		3592A6F41466CC8700C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A64C1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.m */; };
+		3592A6F51466CC8700C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A64E1466CC8600C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.m */; };
+		3592A6F61466CC8700C60346 /* SDZArrayOf_tns1_ProjectSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6501466CC8600C60346 /* SDZArrayOf_tns1_ProjectSoapRow.m */; };
+		3592A6F71466CC8700C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6521466CC8600C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.m */; };
+		3592A6F81466CC8700C60346 /* SDZArrayOf_tns1_UserSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6541466CC8600C60346 /* SDZArrayOf_tns1_UserSoapRow.m */; };
+		3592A6F91466CC8700C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6561466CC8600C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.m */; };
+		3592A6FA1466CC8700C60346 /* SDZArrayOf_xsd_string.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6581466CC8600C60346 /* SDZArrayOf_xsd_string.m */; };
+		3592A6FB1466CC8700C60346 /* SDZAssociationSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A65A1466CC8600C60346 /* SDZAssociationSoapList.m */; };
+		3592A6FC1466CC8700C60346 /* SDZAssociationSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A65C1466CC8600C60346 /* SDZAssociationSoapRow.m */; };
+		3592A6FD1466CC8700C60346 /* SDZAttachmentSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A65E1466CC8600C60346 /* SDZAttachmentSoapList.m */; };
+		3592A6FE1466CC8700C60346 /* SDZAttachmentSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6601466CC8600C60346 /* SDZAttachmentSoapRow.m */; };
+		3592A6FF1466CC8700C60346 /* SDZAuditHistorySoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6621466CC8600C60346 /* SDZAuditHistorySoapList.m */; };
+		3592A7001466CC8700C60346 /* SDZAuditHistorySoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6641466CC8600C60346 /* SDZAuditHistorySoapRow.m */; };
+		3592A7011466CC8700C60346 /* SDZChangeParentNotAllowedFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6661466CC8600C60346 /* SDZChangeParentNotAllowedFault.m */; };
+		3592A7021466CC8700C60346 /* SDZChildProjectsFoundFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6681466CC8600C60346 /* SDZChildProjectsFoundFault.m */; };
+		3592A7031466CC8700C60346 /* SDZCollabNetSoapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A66A1466CC8600C60346 /* SDZCollabNetSoapService.m */; };
+		3592A7041466CC8700C60346 /* SDZCommentSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A66C1466CC8600C60346 /* SDZCommentSoapList.m */; };
+		3592A7051466CC8700C60346 /* SDZCommentSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A66E1466CC8600C60346 /* SDZCommentSoapRow.m */; };
+		3592A7061466CC8700C60346 /* SDZIllegalArgumentFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6701466CC8600C60346 /* SDZIllegalArgumentFault.m */; };
+		3592A7071466CC8700C60346 /* SDZIllegalGroupMemberAddFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6721466CC8600C60346 /* SDZIllegalGroupMemberAddFault.m */; };
+		3592A7081466CC8700C60346 /* SDZIllegalUserModificationFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6741466CC8600C60346 /* SDZIllegalUserModificationFault.m */; };
+		3592A7091466CC8700C60346 /* SDZInvalidOperationFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6761466CC8600C60346 /* SDZInvalidOperationFault.m */; };
+		3592A70A1466CC8700C60346 /* SDZInvalidPasswordFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6781466CC8600C60346 /* SDZInvalidPasswordFault.m */; };
+		3592A70B1466CC8700C60346 /* SDZInvalidSessionFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A67A1466CC8700C60346 /* SDZInvalidSessionFault.m */; };
+		3592A70C1466CC8700C60346 /* SDZLastSuperUserFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A67C1466CC8700C60346 /* SDZLastSuperUserFault.m */; };
+		3592A70D1466CC8700C60346 /* SDZLoginFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A67E1466CC8700C60346 /* SDZLoginFault.m */; };
+		3592A70E1466CC8700C60346 /* SDZNoSuchObjectFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6801466CC8700C60346 /* SDZNoSuchObjectFault.m */; };
+		3592A70F1466CC8700C60346 /* SDZObjectAlreadyExistsFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6821466CC8700C60346 /* SDZObjectAlreadyExistsFault.m */; };
+		3592A7101466CC8700C60346 /* SDZObjectSoapDO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6841466CC8700C60346 /* SDZObjectSoapDO.m */; };
+		3592A7111466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6861466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.m */; };
+		3592A7121466CC8700C60346 /* SDZPermissionDeniedFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6881466CC8700C60346 /* SDZPermissionDeniedFault.m */; };
+		3592A7131466CC8700C60346 /* SDZProjectAlreadyLockedFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A68A1466CC8700C60346 /* SDZProjectAlreadyLockedFault.m */; };
+		3592A7141466CC8700C60346 /* SDZProjectGroupMemberSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A68C1466CC8700C60346 /* SDZProjectGroupMemberSoapList.m */; };
+		3592A7151466CC8700C60346 /* SDZProjectGroupMemberSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A68E1466CC8700C60346 /* SDZProjectGroupMemberSoapRow.m */; };
+		3592A7161466CC8700C60346 /* SDZProjectGroupSoapDO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6901466CC8700C60346 /* SDZProjectGroupSoapDO.m */; };
+		3592A7171466CC8700C60346 /* SDZProjectGroupSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6921466CC8700C60346 /* SDZProjectGroupSoapList.m */; };
+		3592A7181466CC8700C60346 /* SDZProjectGroupSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6941466CC8700C60346 /* SDZProjectGroupSoapRow.m */; };
+		3592A7191466CC8700C60346 /* SDZProjectMemberSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6961466CC8700C60346 /* SDZProjectMemberSoapList.m */; };
+		3592A71A1466CC8700C60346 /* SDZProjectMemberSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6981466CC8700C60346 /* SDZProjectMemberSoapRow.m */; };
+		3592A71B1466CC8700C60346 /* SDZProjectSoapDO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A69A1466CC8700C60346 /* SDZProjectSoapDO.m */; };
+		3592A71C1466CC8700C60346 /* SDZProjectSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A69C1466CC8700C60346 /* SDZProjectSoapList.m */; };
+		3592A71D1466CC8700C60346 /* SDZProjectSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A69E1466CC8700C60346 /* SDZProjectSoapRow.m */; };
+		3592A71E1466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6A01466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.m */; };
+		3592A71F1466CC8700C60346 /* SDZSearchQuerySyntaxFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6A21466CC8700C60346 /* SDZSearchQuerySyntaxFault.m */; };
+		3592A7201466CC8700C60346 /* SDZServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6A41466CC8700C60346 /* SDZServices.m */; };
+		3592A7211466CC8700C60346 /* SDZSoapFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6A61466CC8700C60346 /* SDZSoapFilter.m */; };
+		3592A7221466CC8700C60346 /* SDZSoapNamedValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6A81466CC8700C60346 /* SDZSoapNamedValues.m */; };
+		3592A7231466CC8700C60346 /* SDZSystemFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6AA1466CC8700C60346 /* SDZSystemFault.m */; };
+		3592A7241466CC8700C60346 /* SDZUserGroupSoapDO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6AC1466CC8700C60346 /* SDZUserGroupSoapDO.m */; };
+		3592A7251466CC8700C60346 /* SDZUserGroupSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6AE1466CC8700C60346 /* SDZUserGroupSoapList.m */; };
+		3592A7261466CC8700C60346 /* SDZUserGroupSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6B01466CC8700C60346 /* SDZUserGroupSoapRow.m */; };
+		3592A7271466CC8700C60346 /* SDZUserLimitExceededFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6B21466CC8700C60346 /* SDZUserLimitExceededFault.m */; };
+		3592A7281466CC8700C60346 /* SDZUserSoapDO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6B41466CC8700C60346 /* SDZUserSoapDO.m */; };
+		3592A7291466CC8700C60346 /* SDZUserSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6B61466CC8700C60346 /* SDZUserSoapList.m */; };
+		3592A72A1466CC8700C60346 /* SDZUserSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6B81466CC8700C60346 /* SDZUserSoapRow.m */; };
+		3592A72B1466CC8700C60346 /* SDZVersionInformationSoapList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6BA1466CC8700C60346 /* SDZVersionInformationSoapList.m */; };
+		3592A72C1466CC8700C60346 /* SDZVersionInformationSoapRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6BC1466CC8700C60346 /* SDZVersionInformationSoapRow.m */; };
+		3592A72D1466CC8700C60346 /* SDZVersionMismatchFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6BE1466CC8700C60346 /* SDZVersionMismatchFault.m */; };
+		3592A72E1466CC8700C60346 /* SDZWebServiceFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6C01466CC8700C60346 /* SDZWebServiceFault.m */; };
+		3592A72F1466CC8700C60346 /* Soap+Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6C21466CC8700C60346 /* Soap+Prefix.m */; };
+		3592A7301466CC8700C60346 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6C51466CC8700C60346 /* NSData+Base64.m */; };
+		3592A7311466CC8700C60346 /* NSMutableArray+Soap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6C71466CC8700C60346 /* NSMutableArray+Soap.m */; };
+		3592A7321466CC8700C60346 /* Soap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6C91466CC8700C60346 /* Soap.m */; };
+		3592A7331466CC8700C60346 /* SoapArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6CB1466CC8700C60346 /* SoapArray.m */; };
+		3592A7341466CC8700C60346 /* SoapDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6CE1466CC8700C60346 /* SoapDictionary.m */; };
+		3592A7351466CC8700C60346 /* SoapFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6D01466CC8700C60346 /* SoapFault.m */; };
+		3592A7361466CC8700C60346 /* SoapHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6D21466CC8700C60346 /* SoapHandler.m */; };
+		3592A7371466CC8700C60346 /* SoapLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6D41466CC8700C60346 /* SoapLiteral.m */; };
+		3592A7381466CC8700C60346 /* SoapNil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6D61466CC8700C60346 /* SoapNil.m */; };
+		3592A7391466CC8700C60346 /* SoapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6D81466CC8700C60346 /* SoapObject.m */; };
+		3592A73A1466CC8700C60346 /* SoapParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6DA1466CC8700C60346 /* SoapParameter.m */; };
+		3592A73B1466CC8700C60346 /* SoapReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6DC1466CC8700C60346 /* SoapReachability.m */; };
+		3592A73C1466CC8700C60346 /* SoapRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6DE1466CC8700C60346 /* SoapRequest.m */; };
+		3592A73E1466CC8700C60346 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6E31466CC8700C60346 /* CXMLDocument.m */; };
+		3592A73F1466CC8700C60346 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6E51466CC8700C60346 /* CXMLDocument_PrivateExtensions.m */; };
+		3592A7401466CC8700C60346 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6E71466CC8700C60346 /* CXMLElement.m */; };
+		3592A7411466CC8700C60346 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6E91466CC8700C60346 /* CXMLNode.m */; };
+		3592A7421466CC8700C60346 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6EB1466CC8700C60346 /* CXMLNode_PrivateExtensions.m */; };
+		3592A7431466CC8700C60346 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6ED1466CC8700C60346 /* CXMLNode_XPathExtensions.m */; };
+		3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3592A7441466D1CE00C60346 /* SystemConfiguration.framework */; };
+		3592A7481466DE9700C60346 /* SoapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A7471466DE9700C60346 /* SoapService.m */; };
 		359C01CB1450781F006A8450 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CA1450781F006A8450 /* UIKit.framework */; };
 		359C01CD1450781F006A8450 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CC1450781F006A8450 /* Foundation.framework */; };
 		359C01CF1450781F006A8450 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CE1450781F006A8450 /* CoreGraphics.framework */; };
@@ -17,17 +103,191 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3592A6411466CC8600C60346 /* SDZArrayOf_tns1_AssociationSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_AssociationSoapRow.h; sourceTree = "<group>"; };
+		3592A6421466CC8600C60346 /* SDZArrayOf_tns1_AssociationSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_AssociationSoapRow.m; sourceTree = "<group>"; };
+		3592A6431466CC8600C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_AttachmentSoapRow.h; sourceTree = "<group>"; };
+		3592A6441466CC8600C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_AttachmentSoapRow.m; sourceTree = "<group>"; };
+		3592A6451466CC8600C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_AuditHistorySoapRow.h; sourceTree = "<group>"; };
+		3592A6461466CC8600C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_AuditHistorySoapRow.m; sourceTree = "<group>"; };
+		3592A6471466CC8600C60346 /* SDZArrayOf_tns1_CommentSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_CommentSoapRow.h; sourceTree = "<group>"; };
+		3592A6481466CC8600C60346 /* SDZArrayOf_tns1_CommentSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_CommentSoapRow.m; sourceTree = "<group>"; };
+		3592A6491466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_ProjectGroupMemberSoapRow.h; sourceTree = "<group>"; };
+		3592A64A1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m; sourceTree = "<group>"; };
+		3592A64B1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_ProjectGroupSoapRow.h; sourceTree = "<group>"; };
+		3592A64C1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_ProjectGroupSoapRow.m; sourceTree = "<group>"; };
+		3592A64D1466CC8600C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_ProjectMemberSoapRow.h; sourceTree = "<group>"; };
+		3592A64E1466CC8600C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_ProjectMemberSoapRow.m; sourceTree = "<group>"; };
+		3592A64F1466CC8600C60346 /* SDZArrayOf_tns1_ProjectSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_ProjectSoapRow.h; sourceTree = "<group>"; };
+		3592A6501466CC8600C60346 /* SDZArrayOf_tns1_ProjectSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_ProjectSoapRow.m; sourceTree = "<group>"; };
+		3592A6511466CC8600C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_UserGroupSoapRow.h; sourceTree = "<group>"; };
+		3592A6521466CC8600C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_UserGroupSoapRow.m; sourceTree = "<group>"; };
+		3592A6531466CC8600C60346 /* SDZArrayOf_tns1_UserSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_UserSoapRow.h; sourceTree = "<group>"; };
+		3592A6541466CC8600C60346 /* SDZArrayOf_tns1_UserSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_UserSoapRow.m; sourceTree = "<group>"; };
+		3592A6551466CC8600C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_tns1_VersionInformationSoapRow.h; sourceTree = "<group>"; };
+		3592A6561466CC8600C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_tns1_VersionInformationSoapRow.m; sourceTree = "<group>"; };
+		3592A6571466CC8600C60346 /* SDZArrayOf_xsd_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZArrayOf_xsd_string.h; sourceTree = "<group>"; };
+		3592A6581466CC8600C60346 /* SDZArrayOf_xsd_string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZArrayOf_xsd_string.m; sourceTree = "<group>"; };
+		3592A6591466CC8600C60346 /* SDZAssociationSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAssociationSoapList.h; sourceTree = "<group>"; };
+		3592A65A1466CC8600C60346 /* SDZAssociationSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAssociationSoapList.m; sourceTree = "<group>"; };
+		3592A65B1466CC8600C60346 /* SDZAssociationSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAssociationSoapRow.h; sourceTree = "<group>"; };
+		3592A65C1466CC8600C60346 /* SDZAssociationSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAssociationSoapRow.m; sourceTree = "<group>"; };
+		3592A65D1466CC8600C60346 /* SDZAttachmentSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAttachmentSoapList.h; sourceTree = "<group>"; };
+		3592A65E1466CC8600C60346 /* SDZAttachmentSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAttachmentSoapList.m; sourceTree = "<group>"; };
+		3592A65F1466CC8600C60346 /* SDZAttachmentSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAttachmentSoapRow.h; sourceTree = "<group>"; };
+		3592A6601466CC8600C60346 /* SDZAttachmentSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAttachmentSoapRow.m; sourceTree = "<group>"; };
+		3592A6611466CC8600C60346 /* SDZAuditHistorySoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAuditHistorySoapList.h; sourceTree = "<group>"; };
+		3592A6621466CC8600C60346 /* SDZAuditHistorySoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAuditHistorySoapList.m; sourceTree = "<group>"; };
+		3592A6631466CC8600C60346 /* SDZAuditHistorySoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZAuditHistorySoapRow.h; sourceTree = "<group>"; };
+		3592A6641466CC8600C60346 /* SDZAuditHistorySoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZAuditHistorySoapRow.m; sourceTree = "<group>"; };
+		3592A6651466CC8600C60346 /* SDZChangeParentNotAllowedFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZChangeParentNotAllowedFault.h; sourceTree = "<group>"; };
+		3592A6661466CC8600C60346 /* SDZChangeParentNotAllowedFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZChangeParentNotAllowedFault.m; sourceTree = "<group>"; };
+		3592A6671466CC8600C60346 /* SDZChildProjectsFoundFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZChildProjectsFoundFault.h; sourceTree = "<group>"; };
+		3592A6681466CC8600C60346 /* SDZChildProjectsFoundFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZChildProjectsFoundFault.m; sourceTree = "<group>"; };
+		3592A6691466CC8600C60346 /* SDZCollabNetSoapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZCollabNetSoapService.h; sourceTree = "<group>"; };
+		3592A66A1466CC8600C60346 /* SDZCollabNetSoapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZCollabNetSoapService.m; sourceTree = "<group>"; };
+		3592A66B1466CC8600C60346 /* SDZCommentSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZCommentSoapList.h; sourceTree = "<group>"; };
+		3592A66C1466CC8600C60346 /* SDZCommentSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZCommentSoapList.m; sourceTree = "<group>"; };
+		3592A66D1466CC8600C60346 /* SDZCommentSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZCommentSoapRow.h; sourceTree = "<group>"; };
+		3592A66E1466CC8600C60346 /* SDZCommentSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZCommentSoapRow.m; sourceTree = "<group>"; };
+		3592A66F1466CC8600C60346 /* SDZIllegalArgumentFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZIllegalArgumentFault.h; sourceTree = "<group>"; };
+		3592A6701466CC8600C60346 /* SDZIllegalArgumentFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZIllegalArgumentFault.m; sourceTree = "<group>"; };
+		3592A6711466CC8600C60346 /* SDZIllegalGroupMemberAddFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZIllegalGroupMemberAddFault.h; sourceTree = "<group>"; };
+		3592A6721466CC8600C60346 /* SDZIllegalGroupMemberAddFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZIllegalGroupMemberAddFault.m; sourceTree = "<group>"; };
+		3592A6731466CC8600C60346 /* SDZIllegalUserModificationFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZIllegalUserModificationFault.h; sourceTree = "<group>"; };
+		3592A6741466CC8600C60346 /* SDZIllegalUserModificationFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZIllegalUserModificationFault.m; sourceTree = "<group>"; };
+		3592A6751466CC8600C60346 /* SDZInvalidOperationFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZInvalidOperationFault.h; sourceTree = "<group>"; };
+		3592A6761466CC8600C60346 /* SDZInvalidOperationFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZInvalidOperationFault.m; sourceTree = "<group>"; };
+		3592A6771466CC8600C60346 /* SDZInvalidPasswordFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZInvalidPasswordFault.h; sourceTree = "<group>"; };
+		3592A6781466CC8600C60346 /* SDZInvalidPasswordFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZInvalidPasswordFault.m; sourceTree = "<group>"; };
+		3592A6791466CC8600C60346 /* SDZInvalidSessionFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZInvalidSessionFault.h; sourceTree = "<group>"; };
+		3592A67A1466CC8700C60346 /* SDZInvalidSessionFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZInvalidSessionFault.m; sourceTree = "<group>"; };
+		3592A67B1466CC8700C60346 /* SDZLastSuperUserFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZLastSuperUserFault.h; sourceTree = "<group>"; };
+		3592A67C1466CC8700C60346 /* SDZLastSuperUserFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZLastSuperUserFault.m; sourceTree = "<group>"; };
+		3592A67D1466CC8700C60346 /* SDZLoginFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZLoginFault.h; sourceTree = "<group>"; };
+		3592A67E1466CC8700C60346 /* SDZLoginFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZLoginFault.m; sourceTree = "<group>"; };
+		3592A67F1466CC8700C60346 /* SDZNoSuchObjectFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZNoSuchObjectFault.h; sourceTree = "<group>"; };
+		3592A6801466CC8700C60346 /* SDZNoSuchObjectFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZNoSuchObjectFault.m; sourceTree = "<group>"; };
+		3592A6811466CC8700C60346 /* SDZObjectAlreadyExistsFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZObjectAlreadyExistsFault.h; sourceTree = "<group>"; };
+		3592A6821466CC8700C60346 /* SDZObjectAlreadyExistsFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZObjectAlreadyExistsFault.m; sourceTree = "<group>"; };
+		3592A6831466CC8700C60346 /* SDZObjectSoapDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZObjectSoapDO.h; sourceTree = "<group>"; };
+		3592A6841466CC8700C60346 /* SDZObjectSoapDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZObjectSoapDO.m; sourceTree = "<group>"; };
+		3592A6851466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZParentRoleUsedInChildProjectsFault.h; sourceTree = "<group>"; };
+		3592A6861466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZParentRoleUsedInChildProjectsFault.m; sourceTree = "<group>"; };
+		3592A6871466CC8700C60346 /* SDZPermissionDeniedFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZPermissionDeniedFault.h; sourceTree = "<group>"; };
+		3592A6881466CC8700C60346 /* SDZPermissionDeniedFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZPermissionDeniedFault.m; sourceTree = "<group>"; };
+		3592A6891466CC8700C60346 /* SDZProjectAlreadyLockedFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectAlreadyLockedFault.h; sourceTree = "<group>"; };
+		3592A68A1466CC8700C60346 /* SDZProjectAlreadyLockedFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectAlreadyLockedFault.m; sourceTree = "<group>"; };
+		3592A68B1466CC8700C60346 /* SDZProjectGroupMemberSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectGroupMemberSoapList.h; sourceTree = "<group>"; };
+		3592A68C1466CC8700C60346 /* SDZProjectGroupMemberSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectGroupMemberSoapList.m; sourceTree = "<group>"; };
+		3592A68D1466CC8700C60346 /* SDZProjectGroupMemberSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectGroupMemberSoapRow.h; sourceTree = "<group>"; };
+		3592A68E1466CC8700C60346 /* SDZProjectGroupMemberSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectGroupMemberSoapRow.m; sourceTree = "<group>"; };
+		3592A68F1466CC8700C60346 /* SDZProjectGroupSoapDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectGroupSoapDO.h; sourceTree = "<group>"; };
+		3592A6901466CC8700C60346 /* SDZProjectGroupSoapDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectGroupSoapDO.m; sourceTree = "<group>"; };
+		3592A6911466CC8700C60346 /* SDZProjectGroupSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectGroupSoapList.h; sourceTree = "<group>"; };
+		3592A6921466CC8700C60346 /* SDZProjectGroupSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectGroupSoapList.m; sourceTree = "<group>"; };
+		3592A6931466CC8700C60346 /* SDZProjectGroupSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectGroupSoapRow.h; sourceTree = "<group>"; };
+		3592A6941466CC8700C60346 /* SDZProjectGroupSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectGroupSoapRow.m; sourceTree = "<group>"; };
+		3592A6951466CC8700C60346 /* SDZProjectMemberSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectMemberSoapList.h; sourceTree = "<group>"; };
+		3592A6961466CC8700C60346 /* SDZProjectMemberSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectMemberSoapList.m; sourceTree = "<group>"; };
+		3592A6971466CC8700C60346 /* SDZProjectMemberSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectMemberSoapRow.h; sourceTree = "<group>"; };
+		3592A6981466CC8700C60346 /* SDZProjectMemberSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectMemberSoapRow.m; sourceTree = "<group>"; };
+		3592A6991466CC8700C60346 /* SDZProjectSoapDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectSoapDO.h; sourceTree = "<group>"; };
+		3592A69A1466CC8700C60346 /* SDZProjectSoapDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectSoapDO.m; sourceTree = "<group>"; };
+		3592A69B1466CC8700C60346 /* SDZProjectSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectSoapList.h; sourceTree = "<group>"; };
+		3592A69C1466CC8700C60346 /* SDZProjectSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectSoapList.m; sourceTree = "<group>"; };
+		3592A69D1466CC8700C60346 /* SDZProjectSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZProjectSoapRow.h; sourceTree = "<group>"; };
+		3592A69E1466CC8700C60346 /* SDZProjectSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZProjectSoapRow.m; sourceTree = "<group>"; };
+		3592A69F1466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZRemoveOnlyProjectAdminFault.h; sourceTree = "<group>"; };
+		3592A6A01466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZRemoveOnlyProjectAdminFault.m; sourceTree = "<group>"; };
+		3592A6A11466CC8700C60346 /* SDZSearchQuerySyntaxFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZSearchQuerySyntaxFault.h; sourceTree = "<group>"; };
+		3592A6A21466CC8700C60346 /* SDZSearchQuerySyntaxFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZSearchQuerySyntaxFault.m; sourceTree = "<group>"; };
+		3592A6A31466CC8700C60346 /* SDZServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZServices.h; sourceTree = "<group>"; };
+		3592A6A41466CC8700C60346 /* SDZServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZServices.m; sourceTree = "<group>"; };
+		3592A6A51466CC8700C60346 /* SDZSoapFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZSoapFilter.h; sourceTree = "<group>"; };
+		3592A6A61466CC8700C60346 /* SDZSoapFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZSoapFilter.m; sourceTree = "<group>"; };
+		3592A6A71466CC8700C60346 /* SDZSoapNamedValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZSoapNamedValues.h; sourceTree = "<group>"; };
+		3592A6A81466CC8700C60346 /* SDZSoapNamedValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZSoapNamedValues.m; sourceTree = "<group>"; };
+		3592A6A91466CC8700C60346 /* SDZSystemFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZSystemFault.h; sourceTree = "<group>"; };
+		3592A6AA1466CC8700C60346 /* SDZSystemFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZSystemFault.m; sourceTree = "<group>"; };
+		3592A6AB1466CC8700C60346 /* SDZUserGroupSoapDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserGroupSoapDO.h; sourceTree = "<group>"; };
+		3592A6AC1466CC8700C60346 /* SDZUserGroupSoapDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserGroupSoapDO.m; sourceTree = "<group>"; };
+		3592A6AD1466CC8700C60346 /* SDZUserGroupSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserGroupSoapList.h; sourceTree = "<group>"; };
+		3592A6AE1466CC8700C60346 /* SDZUserGroupSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserGroupSoapList.m; sourceTree = "<group>"; };
+		3592A6AF1466CC8700C60346 /* SDZUserGroupSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserGroupSoapRow.h; sourceTree = "<group>"; };
+		3592A6B01466CC8700C60346 /* SDZUserGroupSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserGroupSoapRow.m; sourceTree = "<group>"; };
+		3592A6B11466CC8700C60346 /* SDZUserLimitExceededFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserLimitExceededFault.h; sourceTree = "<group>"; };
+		3592A6B21466CC8700C60346 /* SDZUserLimitExceededFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserLimitExceededFault.m; sourceTree = "<group>"; };
+		3592A6B31466CC8700C60346 /* SDZUserSoapDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserSoapDO.h; sourceTree = "<group>"; };
+		3592A6B41466CC8700C60346 /* SDZUserSoapDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserSoapDO.m; sourceTree = "<group>"; };
+		3592A6B51466CC8700C60346 /* SDZUserSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserSoapList.h; sourceTree = "<group>"; };
+		3592A6B61466CC8700C60346 /* SDZUserSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserSoapList.m; sourceTree = "<group>"; };
+		3592A6B71466CC8700C60346 /* SDZUserSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZUserSoapRow.h; sourceTree = "<group>"; };
+		3592A6B81466CC8700C60346 /* SDZUserSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZUserSoapRow.m; sourceTree = "<group>"; };
+		3592A6B91466CC8700C60346 /* SDZVersionInformationSoapList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZVersionInformationSoapList.h; sourceTree = "<group>"; };
+		3592A6BA1466CC8700C60346 /* SDZVersionInformationSoapList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZVersionInformationSoapList.m; sourceTree = "<group>"; };
+		3592A6BB1466CC8700C60346 /* SDZVersionInformationSoapRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZVersionInformationSoapRow.h; sourceTree = "<group>"; };
+		3592A6BC1466CC8700C60346 /* SDZVersionInformationSoapRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZVersionInformationSoapRow.m; sourceTree = "<group>"; };
+		3592A6BD1466CC8700C60346 /* SDZVersionMismatchFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZVersionMismatchFault.h; sourceTree = "<group>"; };
+		3592A6BE1466CC8700C60346 /* SDZVersionMismatchFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZVersionMismatchFault.m; sourceTree = "<group>"; };
+		3592A6BF1466CC8700C60346 /* SDZWebServiceFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDZWebServiceFault.h; sourceTree = "<group>"; };
+		3592A6C01466CC8700C60346 /* SDZWebServiceFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDZWebServiceFault.m; sourceTree = "<group>"; };
+		3592A6C11466CC8700C60346 /* Soap+Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Soap+Prefix.h"; sourceTree = "<group>"; };
+		3592A6C21466CC8700C60346 /* Soap+Prefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Soap+Prefix.m"; sourceTree = "<group>"; };
+		3592A6C41466CC8700C60346 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		3592A6C51466CC8700C60346 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		3592A6C61466CC8700C60346 /* NSMutableArray+Soap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Soap.h"; sourceTree = "<group>"; };
+		3592A6C71466CC8700C60346 /* NSMutableArray+Soap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Soap.m"; sourceTree = "<group>"; };
+		3592A6C81466CC8700C60346 /* Soap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soap.h; sourceTree = "<group>"; };
+		3592A6C91466CC8700C60346 /* Soap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soap.m; sourceTree = "<group>"; };
+		3592A6CA1466CC8700C60346 /* SoapArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapArray.h; sourceTree = "<group>"; };
+		3592A6CB1466CC8700C60346 /* SoapArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapArray.m; sourceTree = "<group>"; };
+		3592A6CC1466CC8700C60346 /* SoapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapDelegate.h; sourceTree = "<group>"; };
+		3592A6CD1466CC8700C60346 /* SoapDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapDictionary.h; sourceTree = "<group>"; };
+		3592A6CE1466CC8700C60346 /* SoapDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapDictionary.m; sourceTree = "<group>"; };
+		3592A6CF1466CC8700C60346 /* SoapFault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapFault.h; sourceTree = "<group>"; };
+		3592A6D01466CC8700C60346 /* SoapFault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapFault.m; sourceTree = "<group>"; };
+		3592A6D11466CC8700C60346 /* SoapHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapHandler.h; sourceTree = "<group>"; };
+		3592A6D21466CC8700C60346 /* SoapHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapHandler.m; sourceTree = "<group>"; };
+		3592A6D31466CC8700C60346 /* SoapLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapLiteral.h; sourceTree = "<group>"; };
+		3592A6D41466CC8700C60346 /* SoapLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapLiteral.m; sourceTree = "<group>"; };
+		3592A6D51466CC8700C60346 /* SoapNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapNil.h; sourceTree = "<group>"; };
+		3592A6D61466CC8700C60346 /* SoapNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapNil.m; sourceTree = "<group>"; };
+		3592A6D71466CC8700C60346 /* SoapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapObject.h; sourceTree = "<group>"; };
+		3592A6D81466CC8700C60346 /* SoapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapObject.m; sourceTree = "<group>"; };
+		3592A6D91466CC8700C60346 /* SoapParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapParameter.h; sourceTree = "<group>"; };
+		3592A6DA1466CC8700C60346 /* SoapParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapParameter.m; sourceTree = "<group>"; };
+		3592A6DB1466CC8700C60346 /* SoapReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapReachability.h; sourceTree = "<group>"; };
+		3592A6DC1466CC8700C60346 /* SoapReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapReachability.m; sourceTree = "<group>"; };
+		3592A6DD1466CC8700C60346 /* SoapRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapRequest.h; sourceTree = "<group>"; };
+		3592A6DE1466CC8700C60346 /* SoapRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapRequest.m; sourceTree = "<group>"; };
+		3592A6E21466CC8700C60346 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		3592A6E31466CC8700C60346 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		3592A6E41466CC8700C60346 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		3592A6E51466CC8700C60346 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		3592A6E61466CC8700C60346 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		3592A6E71466CC8700C60346 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		3592A6E81466CC8700C60346 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		3592A6E91466CC8700C60346 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		3592A6EA1466CC8700C60346 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		3592A6EB1466CC8700C60346 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		3592A6EC1466CC8700C60346 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		3592A6ED1466CC8700C60346 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		3592A6EE1466CC8700C60346 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		3592A7441466D1CE00C60346 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3592A7461466DE9700C60346 /* SoapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapService.h; sourceTree = "<group>"; };
+		3592A7471466DE9700C60346 /* SoapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapService.m; sourceTree = "<group>"; };
 		359C01C61450781F006A8450 /* iCTF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCTF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		359C01CA1450781F006A8450 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		359C01CC1450781F006A8450 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		359C01CE1450781F006A8450 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		359C01D21450781F006A8450 /* iCTF-Info.plist */ = {isa = PBXFileReference; path = "iCTF-Info.plist"; sourceTree = "<group>"; };
+		359C01D21450781F006A8450 /* iCTF-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCTF-Info.plist"; sourceTree = "<group>"; };
 		359C01D41450781F006A8450 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		359C01D61450781F006A8450 /* iCTF-Prefix.pch */ = {isa = PBXFileReference; path = "iCTF-Prefix.pch"; sourceTree = "<group>"; };
+		359C01D61450781F006A8450 /* iCTF-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iCTF-Prefix.pch"; sourceTree = "<group>"; };
 		359C01D71450781F006A8450 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		359C01D914507820006A8450 /* iCTFAppDelegate.h */ = {isa = PBXFileReference; path = iCTFAppDelegate.h; sourceTree = "<group>"; };
+		359C01D914507820006A8450 /* iCTFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCTFAppDelegate.h; sourceTree = "<group>"; };
 		359C01DA14507820006A8450 /* iCTFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iCTFAppDelegate.m; sourceTree = "<group>"; };
 		359C01DD14507820006A8450 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		35B33BF0146665DD0083ED32 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */,
 				359C01CB1450781F006A8450 /* UIKit.framework in Frameworks */,
 				359C01CD1450781F006A8450 /* Foundation.framework in Frameworks */,
 				359C01CF1450781F006A8450 /* CoreGraphics.framework in Frameworks */,
@@ -44,9 +305,204 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3592A6401466CC8600C60346 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				3592A6411466CC8600C60346 /* SDZArrayOf_tns1_AssociationSoapRow.h */,
+				3592A6421466CC8600C60346 /* SDZArrayOf_tns1_AssociationSoapRow.m */,
+				3592A6431466CC8600C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.h */,
+				3592A6441466CC8600C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.m */,
+				3592A6451466CC8600C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.h */,
+				3592A6461466CC8600C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.m */,
+				3592A6471466CC8600C60346 /* SDZArrayOf_tns1_CommentSoapRow.h */,
+				3592A6481466CC8600C60346 /* SDZArrayOf_tns1_CommentSoapRow.m */,
+				3592A6491466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.h */,
+				3592A64A1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m */,
+				3592A64B1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.h */,
+				3592A64C1466CC8600C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.m */,
+				3592A64D1466CC8600C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.h */,
+				3592A64E1466CC8600C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.m */,
+				3592A64F1466CC8600C60346 /* SDZArrayOf_tns1_ProjectSoapRow.h */,
+				3592A6501466CC8600C60346 /* SDZArrayOf_tns1_ProjectSoapRow.m */,
+				3592A6511466CC8600C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.h */,
+				3592A6521466CC8600C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.m */,
+				3592A6531466CC8600C60346 /* SDZArrayOf_tns1_UserSoapRow.h */,
+				3592A6541466CC8600C60346 /* SDZArrayOf_tns1_UserSoapRow.m */,
+				3592A6551466CC8600C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.h */,
+				3592A6561466CC8600C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.m */,
+				3592A6571466CC8600C60346 /* SDZArrayOf_xsd_string.h */,
+				3592A6581466CC8600C60346 /* SDZArrayOf_xsd_string.m */,
+				3592A6591466CC8600C60346 /* SDZAssociationSoapList.h */,
+				3592A65A1466CC8600C60346 /* SDZAssociationSoapList.m */,
+				3592A65B1466CC8600C60346 /* SDZAssociationSoapRow.h */,
+				3592A65C1466CC8600C60346 /* SDZAssociationSoapRow.m */,
+				3592A65D1466CC8600C60346 /* SDZAttachmentSoapList.h */,
+				3592A65E1466CC8600C60346 /* SDZAttachmentSoapList.m */,
+				3592A65F1466CC8600C60346 /* SDZAttachmentSoapRow.h */,
+				3592A6601466CC8600C60346 /* SDZAttachmentSoapRow.m */,
+				3592A6611466CC8600C60346 /* SDZAuditHistorySoapList.h */,
+				3592A6621466CC8600C60346 /* SDZAuditHistorySoapList.m */,
+				3592A6631466CC8600C60346 /* SDZAuditHistorySoapRow.h */,
+				3592A6641466CC8600C60346 /* SDZAuditHistorySoapRow.m */,
+				3592A6651466CC8600C60346 /* SDZChangeParentNotAllowedFault.h */,
+				3592A6661466CC8600C60346 /* SDZChangeParentNotAllowedFault.m */,
+				3592A6671466CC8600C60346 /* SDZChildProjectsFoundFault.h */,
+				3592A6681466CC8600C60346 /* SDZChildProjectsFoundFault.m */,
+				3592A6691466CC8600C60346 /* SDZCollabNetSoapService.h */,
+				3592A66A1466CC8600C60346 /* SDZCollabNetSoapService.m */,
+				3592A66B1466CC8600C60346 /* SDZCommentSoapList.h */,
+				3592A66C1466CC8600C60346 /* SDZCommentSoapList.m */,
+				3592A66D1466CC8600C60346 /* SDZCommentSoapRow.h */,
+				3592A66E1466CC8600C60346 /* SDZCommentSoapRow.m */,
+				3592A66F1466CC8600C60346 /* SDZIllegalArgumentFault.h */,
+				3592A6701466CC8600C60346 /* SDZIllegalArgumentFault.m */,
+				3592A6711466CC8600C60346 /* SDZIllegalGroupMemberAddFault.h */,
+				3592A6721466CC8600C60346 /* SDZIllegalGroupMemberAddFault.m */,
+				3592A6731466CC8600C60346 /* SDZIllegalUserModificationFault.h */,
+				3592A6741466CC8600C60346 /* SDZIllegalUserModificationFault.m */,
+				3592A6751466CC8600C60346 /* SDZInvalidOperationFault.h */,
+				3592A6761466CC8600C60346 /* SDZInvalidOperationFault.m */,
+				3592A6771466CC8600C60346 /* SDZInvalidPasswordFault.h */,
+				3592A6781466CC8600C60346 /* SDZInvalidPasswordFault.m */,
+				3592A6791466CC8600C60346 /* SDZInvalidSessionFault.h */,
+				3592A67A1466CC8700C60346 /* SDZInvalidSessionFault.m */,
+				3592A67B1466CC8700C60346 /* SDZLastSuperUserFault.h */,
+				3592A67C1466CC8700C60346 /* SDZLastSuperUserFault.m */,
+				3592A67D1466CC8700C60346 /* SDZLoginFault.h */,
+				3592A67E1466CC8700C60346 /* SDZLoginFault.m */,
+				3592A67F1466CC8700C60346 /* SDZNoSuchObjectFault.h */,
+				3592A6801466CC8700C60346 /* SDZNoSuchObjectFault.m */,
+				3592A6811466CC8700C60346 /* SDZObjectAlreadyExistsFault.h */,
+				3592A6821466CC8700C60346 /* SDZObjectAlreadyExistsFault.m */,
+				3592A6831466CC8700C60346 /* SDZObjectSoapDO.h */,
+				3592A6841466CC8700C60346 /* SDZObjectSoapDO.m */,
+				3592A6851466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.h */,
+				3592A6861466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.m */,
+				3592A6871466CC8700C60346 /* SDZPermissionDeniedFault.h */,
+				3592A6881466CC8700C60346 /* SDZPermissionDeniedFault.m */,
+				3592A6891466CC8700C60346 /* SDZProjectAlreadyLockedFault.h */,
+				3592A68A1466CC8700C60346 /* SDZProjectAlreadyLockedFault.m */,
+				3592A68B1466CC8700C60346 /* SDZProjectGroupMemberSoapList.h */,
+				3592A68C1466CC8700C60346 /* SDZProjectGroupMemberSoapList.m */,
+				3592A68D1466CC8700C60346 /* SDZProjectGroupMemberSoapRow.h */,
+				3592A68E1466CC8700C60346 /* SDZProjectGroupMemberSoapRow.m */,
+				3592A68F1466CC8700C60346 /* SDZProjectGroupSoapDO.h */,
+				3592A6901466CC8700C60346 /* SDZProjectGroupSoapDO.m */,
+				3592A6911466CC8700C60346 /* SDZProjectGroupSoapList.h */,
+				3592A6921466CC8700C60346 /* SDZProjectGroupSoapList.m */,
+				3592A6931466CC8700C60346 /* SDZProjectGroupSoapRow.h */,
+				3592A6941466CC8700C60346 /* SDZProjectGroupSoapRow.m */,
+				3592A6951466CC8700C60346 /* SDZProjectMemberSoapList.h */,
+				3592A6961466CC8700C60346 /* SDZProjectMemberSoapList.m */,
+				3592A6971466CC8700C60346 /* SDZProjectMemberSoapRow.h */,
+				3592A6981466CC8700C60346 /* SDZProjectMemberSoapRow.m */,
+				3592A6991466CC8700C60346 /* SDZProjectSoapDO.h */,
+				3592A69A1466CC8700C60346 /* SDZProjectSoapDO.m */,
+				3592A69B1466CC8700C60346 /* SDZProjectSoapList.h */,
+				3592A69C1466CC8700C60346 /* SDZProjectSoapList.m */,
+				3592A69D1466CC8700C60346 /* SDZProjectSoapRow.h */,
+				3592A69E1466CC8700C60346 /* SDZProjectSoapRow.m */,
+				3592A69F1466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.h */,
+				3592A6A01466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.m */,
+				3592A6A11466CC8700C60346 /* SDZSearchQuerySyntaxFault.h */,
+				3592A6A21466CC8700C60346 /* SDZSearchQuerySyntaxFault.m */,
+				3592A6A31466CC8700C60346 /* SDZServices.h */,
+				3592A6A41466CC8700C60346 /* SDZServices.m */,
+				3592A6A51466CC8700C60346 /* SDZSoapFilter.h */,
+				3592A6A61466CC8700C60346 /* SDZSoapFilter.m */,
+				3592A6A71466CC8700C60346 /* SDZSoapNamedValues.h */,
+				3592A6A81466CC8700C60346 /* SDZSoapNamedValues.m */,
+				3592A6A91466CC8700C60346 /* SDZSystemFault.h */,
+				3592A6AA1466CC8700C60346 /* SDZSystemFault.m */,
+				3592A6AB1466CC8700C60346 /* SDZUserGroupSoapDO.h */,
+				3592A6AC1466CC8700C60346 /* SDZUserGroupSoapDO.m */,
+				3592A6AD1466CC8700C60346 /* SDZUserGroupSoapList.h */,
+				3592A6AE1466CC8700C60346 /* SDZUserGroupSoapList.m */,
+				3592A6AF1466CC8700C60346 /* SDZUserGroupSoapRow.h */,
+				3592A6B01466CC8700C60346 /* SDZUserGroupSoapRow.m */,
+				3592A6B11466CC8700C60346 /* SDZUserLimitExceededFault.h */,
+				3592A6B21466CC8700C60346 /* SDZUserLimitExceededFault.m */,
+				3592A6B31466CC8700C60346 /* SDZUserSoapDO.h */,
+				3592A6B41466CC8700C60346 /* SDZUserSoapDO.m */,
+				3592A6B51466CC8700C60346 /* SDZUserSoapList.h */,
+				3592A6B61466CC8700C60346 /* SDZUserSoapList.m */,
+				3592A6B71466CC8700C60346 /* SDZUserSoapRow.h */,
+				3592A6B81466CC8700C60346 /* SDZUserSoapRow.m */,
+				3592A6B91466CC8700C60346 /* SDZVersionInformationSoapList.h */,
+				3592A6BA1466CC8700C60346 /* SDZVersionInformationSoapList.m */,
+				3592A6BB1466CC8700C60346 /* SDZVersionInformationSoapRow.h */,
+				3592A6BC1466CC8700C60346 /* SDZVersionInformationSoapRow.m */,
+				3592A6BD1466CC8700C60346 /* SDZVersionMismatchFault.h */,
+				3592A6BE1466CC8700C60346 /* SDZVersionMismatchFault.m */,
+				3592A6BF1466CC8700C60346 /* SDZWebServiceFault.h */,
+				3592A6C01466CC8700C60346 /* SDZWebServiceFault.m */,
+				3592A6C11466CC8700C60346 /* Soap+Prefix.h */,
+				3592A6C21466CC8700C60346 /* Soap+Prefix.m */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		3592A6C31466CC8700C60346 /* Soap */ = {
+			isa = PBXGroup;
+			children = (
+				3592A7461466DE9700C60346 /* SoapService.h */,
+				3592A7471466DE9700C60346 /* SoapService.m */,
+				3592A6C41466CC8700C60346 /* NSData+Base64.h */,
+				3592A6C51466CC8700C60346 /* NSData+Base64.m */,
+				3592A6C61466CC8700C60346 /* NSMutableArray+Soap.h */,
+				3592A6C71466CC8700C60346 /* NSMutableArray+Soap.m */,
+				3592A6C81466CC8700C60346 /* Soap.h */,
+				3592A6C91466CC8700C60346 /* Soap.m */,
+				3592A6CA1466CC8700C60346 /* SoapArray.h */,
+				3592A6CB1466CC8700C60346 /* SoapArray.m */,
+				3592A6CC1466CC8700C60346 /* SoapDelegate.h */,
+				3592A6CD1466CC8700C60346 /* SoapDictionary.h */,
+				3592A6CE1466CC8700C60346 /* SoapDictionary.m */,
+				3592A6CF1466CC8700C60346 /* SoapFault.h */,
+				3592A6D01466CC8700C60346 /* SoapFault.m */,
+				3592A6D11466CC8700C60346 /* SoapHandler.h */,
+				3592A6D21466CC8700C60346 /* SoapHandler.m */,
+				3592A6D31466CC8700C60346 /* SoapLiteral.h */,
+				3592A6D41466CC8700C60346 /* SoapLiteral.m */,
+				3592A6D51466CC8700C60346 /* SoapNil.h */,
+				3592A6D61466CC8700C60346 /* SoapNil.m */,
+				3592A6D71466CC8700C60346 /* SoapObject.h */,
+				3592A6D81466CC8700C60346 /* SoapObject.m */,
+				3592A6D91466CC8700C60346 /* SoapParameter.h */,
+				3592A6DA1466CC8700C60346 /* SoapParameter.m */,
+				3592A6DB1466CC8700C60346 /* SoapReachability.h */,
+				3592A6DC1466CC8700C60346 /* SoapReachability.m */,
+				3592A6DD1466CC8700C60346 /* SoapRequest.h */,
+				3592A6DE1466CC8700C60346 /* SoapRequest.m */,
+			);
+			path = Soap;
+			sourceTree = "<group>";
+		};
+		3592A6E11466CC8700C60346 /* TouchXML */ = {
+			isa = PBXGroup;
+			children = (
+				3592A6E21466CC8700C60346 /* CXMLDocument.h */,
+				3592A6E31466CC8700C60346 /* CXMLDocument.m */,
+				3592A6E41466CC8700C60346 /* CXMLDocument_PrivateExtensions.h */,
+				3592A6E51466CC8700C60346 /* CXMLDocument_PrivateExtensions.m */,
+				3592A6E61466CC8700C60346 /* CXMLElement.h */,
+				3592A6E71466CC8700C60346 /* CXMLElement.m */,
+				3592A6E81466CC8700C60346 /* CXMLNode.h */,
+				3592A6E91466CC8700C60346 /* CXMLNode.m */,
+				3592A6EA1466CC8700C60346 /* CXMLNode_PrivateExtensions.h */,
+				3592A6EB1466CC8700C60346 /* CXMLNode_PrivateExtensions.m */,
+				3592A6EC1466CC8700C60346 /* CXMLNode_XPathExtensions.h */,
+				3592A6ED1466CC8700C60346 /* CXMLNode_XPathExtensions.m */,
+				3592A6EE1466CC8700C60346 /* TouchXML.h */,
+			);
+			path = TouchXML;
+			sourceTree = "<group>";
+		};
 		359C01BB1450781E006A8450 = {
 			isa = PBXGroup;
 			children = (
+				3592A7441466D1CE00C60346 /* SystemConfiguration.framework */,
+				35B33BF0146665DD0083ED32 /* CFNetwork.framework */,
 				359C01D01450781F006A8450 /* iCTF */,
 				359C01C91450781F006A8450 /* Frameworks */,
 				359C01C71450781F006A8450 /* Products */,
@@ -74,6 +530,7 @@
 		359C01D01450781F006A8450 /* iCTF */ = {
 			isa = PBXGroup;
 			children = (
+				35B33BD814665C210083ED32 /* SOAP Sources */,
 				359C01D914507820006A8450 /* iCTFAppDelegate.h */,
 				359C01DA14507820006A8450 /* iCTFAppDelegate.m */,
 				359C01DC14507820006A8450 /* MainWindow.xib */,
@@ -91,6 +548,16 @@
 				359C01D71450781F006A8450 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35B33BD814665C210083ED32 /* SOAP Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3592A6401466CC8600C60346 /* Generated */,
+				3592A6C31466CC8700C60346 /* Soap */,
+				3592A6E11466CC8700C60346 /* TouchXML */,
+			);
+			name = "SOAP Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +624,91 @@
 			files = (
 				359C01D81450781F006A8450 /* main.m in Sources */,
 				359C01DB14507820006A8450 /* iCTFAppDelegate.m in Sources */,
+				3592A6EF1466CC8700C60346 /* SDZArrayOf_tns1_AssociationSoapRow.m in Sources */,
+				3592A6F01466CC8700C60346 /* SDZArrayOf_tns1_AttachmentSoapRow.m in Sources */,
+				3592A6F11466CC8700C60346 /* SDZArrayOf_tns1_AuditHistorySoapRow.m in Sources */,
+				3592A6F21466CC8700C60346 /* SDZArrayOf_tns1_CommentSoapRow.m in Sources */,
+				3592A6F31466CC8700C60346 /* SDZArrayOf_tns1_ProjectGroupMemberSoapRow.m in Sources */,
+				3592A6F41466CC8700C60346 /* SDZArrayOf_tns1_ProjectGroupSoapRow.m in Sources */,
+				3592A6F51466CC8700C60346 /* SDZArrayOf_tns1_ProjectMemberSoapRow.m in Sources */,
+				3592A6F61466CC8700C60346 /* SDZArrayOf_tns1_ProjectSoapRow.m in Sources */,
+				3592A6F71466CC8700C60346 /* SDZArrayOf_tns1_UserGroupSoapRow.m in Sources */,
+				3592A6F81466CC8700C60346 /* SDZArrayOf_tns1_UserSoapRow.m in Sources */,
+				3592A6F91466CC8700C60346 /* SDZArrayOf_tns1_VersionInformationSoapRow.m in Sources */,
+				3592A6FA1466CC8700C60346 /* SDZArrayOf_xsd_string.m in Sources */,
+				3592A6FB1466CC8700C60346 /* SDZAssociationSoapList.m in Sources */,
+				3592A6FC1466CC8700C60346 /* SDZAssociationSoapRow.m in Sources */,
+				3592A6FD1466CC8700C60346 /* SDZAttachmentSoapList.m in Sources */,
+				3592A6FE1466CC8700C60346 /* SDZAttachmentSoapRow.m in Sources */,
+				3592A6FF1466CC8700C60346 /* SDZAuditHistorySoapList.m in Sources */,
+				3592A7001466CC8700C60346 /* SDZAuditHistorySoapRow.m in Sources */,
+				3592A7011466CC8700C60346 /* SDZChangeParentNotAllowedFault.m in Sources */,
+				3592A7021466CC8700C60346 /* SDZChildProjectsFoundFault.m in Sources */,
+				3592A7031466CC8700C60346 /* SDZCollabNetSoapService.m in Sources */,
+				3592A7041466CC8700C60346 /* SDZCommentSoapList.m in Sources */,
+				3592A7051466CC8700C60346 /* SDZCommentSoapRow.m in Sources */,
+				3592A7061466CC8700C60346 /* SDZIllegalArgumentFault.m in Sources */,
+				3592A7071466CC8700C60346 /* SDZIllegalGroupMemberAddFault.m in Sources */,
+				3592A7081466CC8700C60346 /* SDZIllegalUserModificationFault.m in Sources */,
+				3592A7091466CC8700C60346 /* SDZInvalidOperationFault.m in Sources */,
+				3592A70A1466CC8700C60346 /* SDZInvalidPasswordFault.m in Sources */,
+				3592A70B1466CC8700C60346 /* SDZInvalidSessionFault.m in Sources */,
+				3592A70C1466CC8700C60346 /* SDZLastSuperUserFault.m in Sources */,
+				3592A70D1466CC8700C60346 /* SDZLoginFault.m in Sources */,
+				3592A70E1466CC8700C60346 /* SDZNoSuchObjectFault.m in Sources */,
+				3592A70F1466CC8700C60346 /* SDZObjectAlreadyExistsFault.m in Sources */,
+				3592A7101466CC8700C60346 /* SDZObjectSoapDO.m in Sources */,
+				3592A7111466CC8700C60346 /* SDZParentRoleUsedInChildProjectsFault.m in Sources */,
+				3592A7121466CC8700C60346 /* SDZPermissionDeniedFault.m in Sources */,
+				3592A7131466CC8700C60346 /* SDZProjectAlreadyLockedFault.m in Sources */,
+				3592A7141466CC8700C60346 /* SDZProjectGroupMemberSoapList.m in Sources */,
+				3592A7151466CC8700C60346 /* SDZProjectGroupMemberSoapRow.m in Sources */,
+				3592A7161466CC8700C60346 /* SDZProjectGroupSoapDO.m in Sources */,
+				3592A7171466CC8700C60346 /* SDZProjectGroupSoapList.m in Sources */,
+				3592A7181466CC8700C60346 /* SDZProjectGroupSoapRow.m in Sources */,
+				3592A7191466CC8700C60346 /* SDZProjectMemberSoapList.m in Sources */,
+				3592A71A1466CC8700C60346 /* SDZProjectMemberSoapRow.m in Sources */,
+				3592A71B1466CC8700C60346 /* SDZProjectSoapDO.m in Sources */,
+				3592A71C1466CC8700C60346 /* SDZProjectSoapList.m in Sources */,
+				3592A71D1466CC8700C60346 /* SDZProjectSoapRow.m in Sources */,
+				3592A71E1466CC8700C60346 /* SDZRemoveOnlyProjectAdminFault.m in Sources */,
+				3592A71F1466CC8700C60346 /* SDZSearchQuerySyntaxFault.m in Sources */,
+				3592A7201466CC8700C60346 /* SDZServices.m in Sources */,
+				3592A7211466CC8700C60346 /* SDZSoapFilter.m in Sources */,
+				3592A7221466CC8700C60346 /* SDZSoapNamedValues.m in Sources */,
+				3592A7231466CC8700C60346 /* SDZSystemFault.m in Sources */,
+				3592A7241466CC8700C60346 /* SDZUserGroupSoapDO.m in Sources */,
+				3592A7251466CC8700C60346 /* SDZUserGroupSoapList.m in Sources */,
+				3592A7261466CC8700C60346 /* SDZUserGroupSoapRow.m in Sources */,
+				3592A7271466CC8700C60346 /* SDZUserLimitExceededFault.m in Sources */,
+				3592A7281466CC8700C60346 /* SDZUserSoapDO.m in Sources */,
+				3592A7291466CC8700C60346 /* SDZUserSoapList.m in Sources */,
+				3592A72A1466CC8700C60346 /* SDZUserSoapRow.m in Sources */,
+				3592A72B1466CC8700C60346 /* SDZVersionInformationSoapList.m in Sources */,
+				3592A72C1466CC8700C60346 /* SDZVersionInformationSoapRow.m in Sources */,
+				3592A72D1466CC8700C60346 /* SDZVersionMismatchFault.m in Sources */,
+				3592A72E1466CC8700C60346 /* SDZWebServiceFault.m in Sources */,
+				3592A72F1466CC8700C60346 /* Soap+Prefix.m in Sources */,
+				3592A7301466CC8700C60346 /* NSData+Base64.m in Sources */,
+				3592A7311466CC8700C60346 /* NSMutableArray+Soap.m in Sources */,
+				3592A7321466CC8700C60346 /* Soap.m in Sources */,
+				3592A7331466CC8700C60346 /* SoapArray.m in Sources */,
+				3592A7341466CC8700C60346 /* SoapDictionary.m in Sources */,
+				3592A7351466CC8700C60346 /* SoapFault.m in Sources */,
+				3592A7361466CC8700C60346 /* SoapHandler.m in Sources */,
+				3592A7371466CC8700C60346 /* SoapLiteral.m in Sources */,
+				3592A7381466CC8700C60346 /* SoapNil.m in Sources */,
+				3592A7391466CC8700C60346 /* SoapObject.m in Sources */,
+				3592A73A1466CC8700C60346 /* SoapParameter.m in Sources */,
+				3592A73B1466CC8700C60346 /* SoapReachability.m in Sources */,
+				3592A73C1466CC8700C60346 /* SoapRequest.m in Sources */,
+				3592A73E1466CC8700C60346 /* CXMLDocument.m in Sources */,
+				3592A73F1466CC8700C60346 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				3592A7401466CC8700C60346 /* CXMLElement.m in Sources */,
+				3592A7411466CC8700C60346 /* CXMLNode.m in Sources */,
+				3592A7421466CC8700C60346 /* CXMLNode_PrivateExtensions.m in Sources */,
+				3592A7431466CC8700C60346 /* CXMLNode_XPathExtensions.m in Sources */,
+				3592A7481466DE9700C60346 /* SoapService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +747,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"OTHER_CFLAGS[arch=*]" = "-I/usr/include/libxml2";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -209,7 +763,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-I/usr/include/libxml2",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -261,6 +819,7 @@
 				359C01E314507820006A8450 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

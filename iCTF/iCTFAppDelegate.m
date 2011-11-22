@@ -7,6 +7,7 @@
 //
 
 #import "iCTFAppDelegate.h"
+#import "SDZCollabNetSoapService.h"
 
 @implementation iCTFAppDelegate
 
@@ -18,6 +19,38 @@
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (IBAction) login:(id)sender 
+{
+    NSString *serverName = [ server text ];
+    NSString *user = [ username text ];
+    NSString *userPass = [ password text ];
+    Boolean protocolStatus = [ protocol isOn ];
+    SDZCollabNetSoapService *binding;
+    
+    if (protocolStatus) {
+        binding = [[SDZCollabNetSoapService alloc] 
+                   initWithUrl: [[NSString alloc] initWithFormat:@"https://%@/ce-soap60/services/CollabNet", serverName ]];
+        
+        
+    } else {
+        binding = [[SDZCollabNetSoapService alloc] 
+                   initWithUrl: [[NSString alloc] initWithFormat:@"http://%@/ce-soap60/services/CollabNet", serverName ]];    
+    }
+    [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
+    
+}
+
+- (void)handleLogin:(id)value {
+    NSString *display;
+    if ([value isKindOfClass:([SoapFault class])]) {
+        display = [ value faultString ];
+    } else {
+        NSString *soapId = value;
+        display = soapId;
+    }
+    [ status setText: display ];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

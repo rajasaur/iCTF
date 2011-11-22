@@ -79,14 +79,20 @@
 	{
 		if(self = [super init])
 		{
-			self.serviceUrl = @"http://localhost:8080/ce-soap60/services/CollabNet";
+			self.serviceUrl = @"https://forge.collab.net/ce-soap60/services/CollabNet";
 			self.namespace = @"http://schema.open.collab.net/sfee50/soap60/service";
 			self.headers = nil;
 			self.logging = NO;
 		}
 		return self;
 	}
-	
+
+    - (id) initWithUrl: (NSString*) url {
+        if(self = [super initWithUrl:url]) {
+        }
+        return self;
+    }
+
 	- (id) initWithUsername: (NSString*) username andPassword: (NSString*) password {
 		if(self = [super initWithUsername:username andPassword:password]) {
 		}

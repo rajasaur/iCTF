@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface iCTFAppDelegate : NSObject <UIApplicationDelegate> {
-
+    IBOutlet UITextField *server;
+    IBOutlet UITextField *username;
+    IBOutlet UITextField *password;
+    IBOutlet UISwitch *protocol;
+    IBOutlet UILabel  *status;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+- (IBAction) login:(id)sender;
 
 @end
