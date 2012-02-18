@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface iCTFAppDelegate : NSObject <UIApplicationDelegate> {
+@interface iCTFAppDelegate : NSObject <UIApplicationDelegate, UITextFieldDelegate> {
     IBOutlet UITextField *server;
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;

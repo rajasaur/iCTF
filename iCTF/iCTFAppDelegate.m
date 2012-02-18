@@ -92,6 +92,12 @@
      */
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)dealloc
 {
     [_window release];
