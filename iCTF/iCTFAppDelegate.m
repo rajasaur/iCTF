@@ -7,7 +7,7 @@
 //
 
 #import "iCTFAppDelegate.h"
-#import "SDZCollabNetSoapService.h"
+#import "LoginViewController.h"
 
 @implementation iCTFAppDelegate
 
@@ -16,41 +16,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Push the first view controller on the stack
+    LoginViewController *viewController = [[LoginViewController alloc] init];
+    
+    [self.window setRootViewController:viewController];
+    [self.window addSubview:[viewController view]];
     [self.window makeKeyAndVisible];
+    [viewController release];
+    
+    
     return YES;
 }
 
 - (IBAction) login:(id)sender 
 {
-    NSString *serverName = [ server text ];
-    NSString *user = [ username text ];
-    NSString *userPass = [ password text ];
-    Boolean protocolStatus = [ protocol isOn ];
-    SDZCollabNetSoapService *binding;
-    
-    if (protocolStatus) {
-        binding = [[SDZCollabNetSoapService alloc] 
-                   initWithUrl: [[NSString alloc] initWithFormat:@"https://%@/ce-soap60/services/CollabNet", serverName ]];
-        
-        
-    } else {
-        binding = [[SDZCollabNetSoapService alloc] 
-                   initWithUrl: [[NSString alloc] initWithFormat:@"http://%@/ce-soap60/services/CollabNet", serverName ]];    
-    }
-    [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
-    
+//    NSString *serverName = [ server text ];
+//    NSString *user = [ username text ];
+//    NSString *userPass = [ password text ];
+//    Boolean protocolStatus = [ protocol isOn ];
+//    
+//    //    
 }
 
 - (void)handleLogin:(id)value {
-    NSString *display;
-    if ([value isKindOfClass:([SoapFault class])]) {
-        display = [ value faultString ];
-    } else {
-        NSString *soapId = value;
-        display = soapId;
-    }
-    [ status setText: display ];
+//    NSString *display;
+//    if ([value isKindOfClass:([SoapFault class])]) {
+//        display = [ value faultString ];
+//    } else {
+//        NSString *soapId = value;
+//        display = soapId;
+//    }
+//    [ status setText: display ];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
