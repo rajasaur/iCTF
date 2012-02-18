@@ -93,13 +93,17 @@
 		3592A7431466CC8700C60346 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6ED1466CC8700C60346 /* CXMLNode_XPathExtensions.m */; };
 		3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3592A7441466D1CE00C60346 /* SystemConfiguration.framework */; };
 		3592A7481466DE9700C60346 /* SoapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A7471466DE9700C60346 /* SoapService.m */; };
+		359867F514EFFB180038BFEB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359867F314EFFB180038BFEB /* LoginViewController.m */; };
+		359867F614EFFB180038BFEB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359867F414EFFB180038BFEB /* LoginViewController.xib */; };
+		359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359867FC14F0019F0038BFEB /* MainWindow.xib */; };
 		359C01CB1450781F006A8450 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CA1450781F006A8450 /* UIKit.framework */; };
 		359C01CD1450781F006A8450 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CC1450781F006A8450 /* Foundation.framework */; };
 		359C01CF1450781F006A8450 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359C01CE1450781F006A8450 /* CoreGraphics.framework */; };
 		359C01D51450781F006A8450 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 359C01D31450781F006A8450 /* InfoPlist.strings */; };
 		359C01D81450781F006A8450 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 359C01D71450781F006A8450 /* main.m */; };
 		359C01DB14507820006A8450 /* iCTFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 359C01DA14507820006A8450 /* iCTFAppDelegate.m */; };
-		359C01DE14507820006A8450 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359C01DC14507820006A8450 /* MainWindow.xib */; };
+		35A22FF014EFF8310006E747 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A22FEE14EFF8300006E747 /* DashboardViewController.m */; };
+		35A22FF114EFF8310006E747 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A22FEF14EFF8300006E747 /* DashboardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +280,10 @@
 		3592A7441466D1CE00C60346 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3592A7461466DE9700C60346 /* SoapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapService.h; sourceTree = "<group>"; };
 		3592A7471466DE9700C60346 /* SoapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapService.m; sourceTree = "<group>"; };
+		359867F214EFFB180038BFEB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		359867F314EFFB180038BFEB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		359867F414EFFB180038BFEB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		359867FD14F0019F0038BFEB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		359C01C61450781F006A8450 /* iCTF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCTF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		359C01CA1450781F006A8450 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		359C01CC1450781F006A8450 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -286,7 +294,9 @@
 		359C01D71450781F006A8450 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		359C01D914507820006A8450 /* iCTFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCTFAppDelegate.h; sourceTree = "<group>"; };
 		359C01DA14507820006A8450 /* iCTFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iCTFAppDelegate.m; sourceTree = "<group>"; };
-		359C01DD14507820006A8450 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		35A22FED14EFF8300006E747 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		35A22FEE14EFF8300006E747 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		35A22FEF14EFF8300006E747 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		35B33BF0146665DD0083ED32 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -530,11 +540,17 @@
 		359C01D01450781F006A8450 /* iCTF */ = {
 			isa = PBXGroup;
 			children = (
+				359867FC14F0019F0038BFEB /* MainWindow.xib */,
 				35B33BD814665C210083ED32 /* SOAP Sources */,
 				359C01D914507820006A8450 /* iCTFAppDelegate.h */,
 				359C01DA14507820006A8450 /* iCTFAppDelegate.m */,
-				359C01DC14507820006A8450 /* MainWindow.xib */,
+				359867F214EFFB180038BFEB /* LoginViewController.h */,
+				359867F314EFFB180038BFEB /* LoginViewController.m */,
+				359867F414EFFB180038BFEB /* LoginViewController.xib */,
 				359C01D11450781F006A8450 /* Supporting Files */,
+				35A22FED14EFF8300006E747 /* DashboardViewController.h */,
+				35A22FEE14EFF8300006E747 /* DashboardViewController.m */,
+				35A22FEF14EFF8300006E747 /* DashboardViewController.xib */,
 			);
 			path = iCTF;
 			sourceTree = "<group>";
@@ -611,7 +627,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				359C01D51450781F006A8450 /* InfoPlist.strings in Resources */,
-				359C01DE14507820006A8450 /* MainWindow.xib in Resources */,
+				35A22FF114EFF8310006E747 /* DashboardViewController.xib in Resources */,
+				359867F614EFFB180038BFEB /* LoginViewController.xib in Resources */,
+				359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,26 +727,28 @@
 				3592A7421466CC8700C60346 /* CXMLNode_PrivateExtensions.m in Sources */,
 				3592A7431466CC8700C60346 /* CXMLNode_XPathExtensions.m in Sources */,
 				3592A7481466DE9700C60346 /* SoapService.m in Sources */,
+				35A22FF014EFF8310006E747 /* DashboardViewController.m in Sources */,
+				359867F514EFFB180038BFEB /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		359867FC14F0019F0038BFEB /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				359867FD14F0019F0038BFEB /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
 		359C01D31450781F006A8450 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				359C01D41450781F006A8450 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		359C01DC14507820006A8450 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				359C01DD14507820006A8450 /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
