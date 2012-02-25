@@ -12,6 +12,10 @@
 
 #define ORANGE [UIColor colorWithRed:0.154 green:0.154 blue:0.154 alpha:1.0f]
 
+@interface LoginViewController()
+  -(void) testLogin;
+@end
+
 @implementation LoginViewController
 
 @synthesize navigationController;
@@ -27,6 +31,7 @@
 
 - (void)dealloc
 {
+    [super.navigationController release];
     [super dealloc];
 }
 
@@ -82,7 +87,8 @@
         binding = [[SDZCollabNetSoapService alloc] 
                    initWithUrl: [[NSString alloc] initWithFormat:@"http://%@/ce-soap60/services/CollabNet", serverName ]];    
     }
-    [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
+    //[ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
+    [self testLogin];
 }
 
 - (void)showDashboardPage
@@ -94,10 +100,19 @@
     frame.origin.x = 0.0f;
     self.navigationController.view.frame = frame;
     self.navigationController.navigationBar.tintColor = ORANGE;
-    dashboardViewController.title = @"Dashboard";
+    [dashboardViewController setTitle:@"Dashboard"];
     [dashboardViewController release];
 }
 
+- (void)testLogin {
+    [self showDashboardPage];
+    NSMutableDictionary *threadLocals = [[NSThread currentThread] threadDictionary];
+    [threadLocals setValue:@"TestString" forKey:@"CTFKey"];
+    [self presentModalViewController:navigationController animated:NO	];
+	
+}
+
+// This will be called when we actually start using SOAP calls.
 - (void)handleLogin:(id)value {
     NSString *display;
     if ([value isKindOfClass:([SoapFault class])]) {
@@ -106,7 +121,9 @@
         return;
     } 
     [self showDashboardPage];
-    [self presentModalViewController:navigationController animated:YES];
+    NSMutableDictionary *threadLocals = [[NSThread currentThread] threadDictionary];
+    [threadLocals setValue:@"TestString" forKey:@"CTFKey"];
+    [self presentModalViewController:navigationController animated:NO	];
 }
 
 

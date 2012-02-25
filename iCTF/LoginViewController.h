@@ -18,7 +18,7 @@
  
 }
 
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) UINavigationController *navigationController;
 
 - (IBAction) login:(id)sender;
 @end

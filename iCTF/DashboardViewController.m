@@ -7,17 +7,24 @@
 //
 
 #import "DashboardViewController.h"
+#import "AccountInfoViewController.h"
 
+#define ORANGE [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0f]
 
 @implementation DashboardViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
     }
     return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    return [super init];
 }
 
 - (void)dealloc
@@ -37,6 +44,9 @@
 
 - (void)viewDidLoad
 {
+    NSMutableDictionary *threadLocals = [[NSThread currentThread] threadDictionary];
+    NSString *key = [threadLocals valueForKey:@"CTFKey"];
+    NSLog(@"test: %@",key);
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -54,4 +64,61 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    int index = [indexPath row];
+    
+    static NSString *cellIdentifier = @"DashboardCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (cell == nil) { 
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellIdentifier] autorelease];
+	}
+    
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size: 16];
+    
+    //UIImage *image = [UIImage imageNamed:@"setting_list.jpg"];
+    //UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    //imageView.contentMode = UIViewContentModeScaleToFill;
+    //cell.backgroundView = imageView;
+    cell.textLabel.backgroundColor = [UIColor clearColor]; 
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+
+    switch (index)
+    {
+        case 0:
+            [[cell textLabel] setText: @"Account Information"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        default:
+            [[cell textLabel] setText: [NSString stringWithFormat:@"Cell Number: %d", index]];
+    }
+    [[cell textLabel] setFont:font];
+    [[cell textLabel] setTextColor:ORANGE];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+    
+    return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    return 75;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == 0) {
+        AccountInfoViewController *accountViewController = [[AccountInfoViewController alloc] init];
+        accountViewController.title = @"Account Details";
+        [self.navigationController pushViewController:accountViewController animated:YES];
+        [accountViewController release];
+    }
+}
 @end
