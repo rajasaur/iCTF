@@ -93,6 +93,8 @@
 		3592A7431466CC8700C60346 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A6ED1466CC8700C60346 /* CXMLNode_XPathExtensions.m */; };
 		3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3592A7441466D1CE00C60346 /* SystemConfiguration.framework */; };
 		3592A7481466DE9700C60346 /* SoapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592A7471466DE9700C60346 /* SoapService.m */; };
+		3594E29D14F8F57100B2EB72 /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */; };
+		3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */; };
 		359867F514EFFB180038BFEB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359867F314EFFB180038BFEB /* LoginViewController.m */; };
 		359867F614EFFB180038BFEB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359867F414EFFB180038BFEB /* LoginViewController.xib */; };
 		359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359867FC14F0019F0038BFEB /* MainWindow.xib */; };
@@ -280,6 +282,9 @@
 		3592A7441466D1CE00C60346 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3592A7461466DE9700C60346 /* SoapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapService.h; sourceTree = "<group>"; };
 		3592A7471466DE9700C60346 /* SoapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapService.m; sourceTree = "<group>"; };
+		3594E29A14F8F57100B2EB72 /* AccountInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoViewController.h; sourceTree = "<group>"; };
+		3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoViewController.m; sourceTree = "<group>"; };
+		3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoViewController.xib; sourceTree = "<group>"; };
 		359867F214EFFB180038BFEB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		359867F314EFFB180038BFEB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		359867F414EFFB180038BFEB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -550,6 +555,9 @@
 				359C01D11450781F006A8450 /* Supporting Files */,
 				35A22FED14EFF8300006E747 /* DashboardViewController.h */,
 				35A22FEE14EFF8300006E747 /* DashboardViewController.m */,
+				3594E29A14F8F57100B2EB72 /* AccountInfoViewController.h */,
+				3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */,
+				3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */,
 				35A22FEF14EFF8300006E747 /* DashboardViewController.xib */,
 			);
 			path = iCTF;
@@ -630,6 +638,7 @@
 				35A22FF114EFF8310006E747 /* DashboardViewController.xib in Resources */,
 				359867F614EFFB180038BFEB /* LoginViewController.xib in Resources */,
 				359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */,
+				3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +738,7 @@
 				3592A7481466DE9700C60346 /* SoapService.m in Sources */,
 				35A22FF014EFF8310006E747 /* DashboardViewController.m in Sources */,
 				359867F514EFFB180038BFEB /* LoginViewController.m in Sources */,
+				3594E29D14F8F57100B2EB72 /* AccountInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
