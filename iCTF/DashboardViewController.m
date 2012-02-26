@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "AccountInfoViewController.h"
+#import "MyArtifactsViewController.h"
 
 #define ORANGE [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0f]
 
@@ -70,7 +71,7 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,8 +98,18 @@
             [[cell textLabel] setText: @"Account Information"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-        default:
-            [[cell textLabel] setText: [NSString stringWithFormat:@"Cell Number: %d", index]];
+        case 1:
+            [[cell textLabel] setText: @"My Artifacts"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 2:
+            [[cell textLabel] setText: @"About iCTF"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 3:
+            [[cell textLabel] setText: @"Logout"];
+            break;
+        
     }
     [[cell textLabel] setFont:font];
     [[cell textLabel] setTextColor:ORANGE];
@@ -114,11 +125,27 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == 0) {
-        AccountInfoViewController *accountViewController = [[AccountInfoViewController alloc] init];
-        accountViewController.title = @"Account Details";
-        [self.navigationController pushViewController:accountViewController animated:YES];
-        [accountViewController release];
+    int index = [indexPath row];
+    switch (index)
+    {
+        case 0:
+        {
+            AccountInfoViewController *accountViewController = [[AccountInfoViewController alloc] init];
+            accountViewController.title = @"Account Details";
+            [self.navigationController pushViewController:accountViewController animated:YES];
+            [accountViewController release];
+            break;
+        }
+        case 1:
+        {
+            MyArtifactsViewController *myArtifactsViewController = [[MyArtifactsViewController alloc] init];
+            myArtifactsViewController.title = @"My Artifacts";
+            [self.navigationController pushViewController:myArtifactsViewController animated:YES];
+            [myArtifactsViewController release];
+        }
+        default:
+            break;
     }
+	
 }
 @end

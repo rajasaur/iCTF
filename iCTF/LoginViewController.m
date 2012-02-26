@@ -14,6 +14,7 @@
 
 @interface LoginViewController()
   -(void) testLogin;
+  -(void) storeUsername:(NSString *)username Server:(NSString *)server;
 @end
 
 @implementation LoginViewController
@@ -77,20 +78,35 @@
     NSString *userPass = [ password text ];
     Boolean protocolStatus = [ protocol isOn ];
     SDZCollabNetSoapService *binding;
+
+    NSString *serverInfo;
     
     if (protocolStatus) {
+        serverInfo = [[NSString alloc] initWithFormat:@"https://%@", serverName];
         binding = [[SDZCollabNetSoapService alloc] 
-                   initWithUrl: [[NSString alloc] initWithFormat:@"https://%@/ce-soap60/services/CollabNet", serverName ]];
+                   initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/CollabNet", serverInfo ]];
         
         
     } else {
+        serverInfo = [[NSString alloc] initWithFormat:@"http://%@", serverName];
         binding = [[SDZCollabNetSoapService alloc] 
-                   initWithUrl: [[NSString alloc] initWithFormat:@"http://%@/ce-soap60/services/CollabNet", serverName ]];    
+                   initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/CollabNet", serverInfo ]];    
     }
+    
+ 
+    [self storeUsername:user Server:serverInfo];
     [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
     //[self testLogin];
 }
 
+- (void) storeUsername:(NSString *)user Server:(NSString *)serverInfo
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:user forKey:@"Username"];
+    [userDefaults setObject:serverInfo forKey:@"Server"];
+    [userDefaults synchronize];   
+}
+   
 - (void)showDashboardPage
 {
     DashboardViewController *dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
@@ -120,9 +136,14 @@
         [status setText:display ];
         return;
     } 
+    NSString *soapSessionId = value;
     [self showDashboardPage];
     NSMutableDictionary *threadLocals = [[NSThread currentThread] threadDictionary];
     [threadLocals setValue:@"TestString" forKey:@"CTFKey"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:soapSessionId forKey:@"SoapSessionId"];
+    [userDefaults synchronize];
+    
     [self presentModalViewController:navigationController animated:NO	];
 }
 
