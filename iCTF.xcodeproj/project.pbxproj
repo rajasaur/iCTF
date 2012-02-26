@@ -132,6 +132,8 @@
 		3501734214FA342F00C05760 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 350172C214FA342B00C05760 /* CXMLNode.m */; };
 		3501734314FA342F00C05760 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 350172C414FA342B00C05760 /* CXMLNode_PrivateExtensions.m */; };
 		3501734414FA342F00C05760 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 350172C614FA342B00C05760 /* CXMLNode_XPathExtensions.m */; };
+		3501734814FA378D00C05760 /* MyArtifactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3501734614FA378D00C05760 /* MyArtifactsViewController.m */; };
+		3501734914FA378D00C05760 /* MyArtifactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3501734714FA378D00C05760 /* MyArtifactsViewController.xib */; };
 		3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3592A7441466D1CE00C60346 /* SystemConfiguration.framework */; };
 		3594E29D14F8F57100B2EB72 /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */; };
 		3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */; };
@@ -401,6 +403,9 @@
 		350172C514FA342B00C05760 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
 		350172C614FA342B00C05760 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
 		350172C714FA342B00C05760 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		3501734514FA378D00C05760 /* MyArtifactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyArtifactsViewController.h; sourceTree = "<group>"; };
+		3501734614FA378D00C05760 /* MyArtifactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyArtifactsViewController.m; sourceTree = "<group>"; };
+		3501734714FA378D00C05760 /* MyArtifactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyArtifactsViewController.xib; sourceTree = "<group>"; };
 		3592A7441466D1CE00C60346 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3594E29A14F8F57100B2EB72 /* AccountInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoViewController.h; sourceTree = "<group>"; };
 		3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoViewController.m; sourceTree = "<group>"; };
@@ -759,6 +764,9 @@
 				3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */,
 				3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */,
 				35A22FEF14EFF8300006E747 /* DashboardViewController.xib */,
+				3501734514FA378D00C05760 /* MyArtifactsViewController.h */,
+				3501734614FA378D00C05760 /* MyArtifactsViewController.m */,
+				3501734714FA378D00C05760 /* MyArtifactsViewController.xib */,
 			);
 			path = iCTF;
 			sourceTree = "<group>";
@@ -839,6 +847,7 @@
 				359867F614EFFB180038BFEB /* LoginViewController.xib in Resources */,
 				359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */,
 				3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */,
+				3501734914FA378D00C05760 /* MyArtifactsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +988,7 @@
 				3501734214FA342F00C05760 /* CXMLNode.m in Sources */,
 				3501734314FA342F00C05760 /* CXMLNode_PrivateExtensions.m in Sources */,
 				3501734414FA342F00C05760 /* CXMLNode_XPathExtensions.m in Sources */,
+				3501734814FA378D00C05760 /* MyArtifactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
