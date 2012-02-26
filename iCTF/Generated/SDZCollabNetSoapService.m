@@ -18,24 +18,24 @@
 #import "SDZSystemFault.h"
 #import "SDZUserLimitExceededFault.h"
 #import "SDZIllegalArgumentFault.h"
-#import "SDZLoginFault.h"
 #import "SDZObjectAlreadyExistsFault.h"
-#import "SDZChangeParentNotAllowedFault.h"
+#import "SDZRemoveOnlyProjectAdminFault.h"
 #import "SDZParentRoleUsedInChildProjectsFault.h"
 #import "SDZChildProjectsFoundFault.h"
 #import "SDZSearchQuerySyntaxFault.h"
-#import "SDZRemoveOnlyProjectAdminFault.h"
+#import "SDZChangeParentNotAllowedFault.h"
+#import "SDZLoginFault.h"
 #import "SDZInvalidPasswordFault.h"
 #import "SDZInvalidOperationFault.h"
 #import "SDZProjectAlreadyLockedFault.h"
 #import "SDZIllegalGroupMemberAddFault.h"
 #import "SDZArrayOf_tns1_AttachmentSoapRow.h"
-#import "SDZArrayOf_xsd_string.h"
 #import "SDZArrayOf_tns1_ProjectSoapRow.h"
-#import "SDZArrayOf_tns1_UserSoapRow.h"
-#import "SDZArrayOf_tns1_ProjectGroupSoapRow.h"
 #import "SDZArrayOf_tns1_VersionInformationSoapRow.h"
+#import "SDZArrayOf_tns1_UserSoapRow.h"
 #import "SDZArrayOf_tns1_UserGroupSoapRow.h"
+#import "SDZArrayOf_tns1_ProjectGroupSoapRow.h"
+#import "SDZArrayOf_xsd_string.h"
 #import "SDZArrayOf_tns1_ProjectMemberSoapRow.h"
 #import "SDZArrayOf_tns1_CommentSoapRow.h"
 #import "SDZArrayOf_tns1_AssociationSoapRow.h"
@@ -43,10 +43,10 @@
 #import "SDZArrayOf_tns1_ProjectGroupMemberSoapRow.h"
 #import "SDZAttachmentSoapList.h"
 #import "SDZProjectSoapList.h"
-#import "SDZUserSoapList.h"
-#import "SDZProjectGroupSoapList.h"
 #import "SDZVersionInformationSoapList.h"
+#import "SDZUserSoapList.h"
 #import "SDZUserGroupSoapList.h"
+#import "SDZProjectGroupSoapList.h"
 #import "SDZProjectMemberSoapList.h"
 #import "SDZCommentSoapList.h"
 #import "SDZAssociationSoapList.h"
@@ -59,8 +59,8 @@
 #import "SDZSoapFilter.h"
 #import "SDZSoapNamedValues.h"
 #import "SDZUserGroupSoapDO.h"
-#import "SDZProjectGroupSoapDO.h"
 #import "SDZUserGroupSoapRow.h"
+#import "SDZProjectGroupSoapDO.h"
 #import "SDZProjectMemberSoapRow.h"
 #import "SDZProjectGroupMemberSoapRow.h"
 #import "SDZVersionInformationSoapRow.h"
@@ -79,20 +79,14 @@
 	{
 		if(self = [super init])
 		{
-			self.serviceUrl = @"https://forge.collab.net/ce-soap60/services/CollabNet";
+			self.serviceUrl = @"http://localhost:8080/ce-soap60/services/CollabNet";
 			self.namespace = @"http://schema.open.collab.net/sfee50/soap60/service";
 			self.headers = nil;
 			self.logging = NO;
 		}
 		return self;
 	}
-
-    - (id) initWithUrl: (NSString*) url {
-        if(self = [super initWithUrl:url]) {
-        }
-        return self;
-    }
-
+	
 	- (id) initWithUsername: (NSString*) username andPassword: (NSString*) password {
 		if(self = [super initWithUsername:username andPassword:password]) {
 		}
@@ -182,72 +176,379 @@
 		return _request;
 	}
 
-	/* Returns .  */
-	- (SoapRequest*) keepAlive: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
+	/* Returns SDZAttachmentSoapList*.  */
+	- (SoapRequest*) listAttachments: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId
 	{
-		return [self keepAlive: handler action: nil sessionId: sessionId];
+		return [self listAttachments: handler action: nil sessionId: sessionId objectId: objectId];
 	}
 
-	- (SoapRequest*) keepAlive: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
+	- (SoapRequest*) listAttachments: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId objectId: (NSString*) objectId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"keepAlive" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"listAttachments" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZAttachmentSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) getCurrentUserData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
+	{
+		return [self getCurrentUserData: handler action: nil sessionId: sessionId];
+	}
+
+	- (SoapRequest*) getCurrentUserData: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getCurrentUserData" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapList*.  */
+	- (SoapRequest*) getProjectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+	{
+		return [self getProjectList: handler action: nil sessionId: sessionId fetchHierarchyPath: fetchHierarchyPath];
+	}
+
+	- (SoapRequest*) getProjectList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) createProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description
+	{
+		return [self createProject: handler action: nil sessionId: sessionId name: name title: title description: description];
+	}
+
+	- (SoapRequest*) createProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: name forName: @"name"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: title forName: @"title"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: description forName: @"description"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"createProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns int.  */
+	- (SoapRequest*) getProjectAccessLevel: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self getProjectAccessLevel: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) getProjectAccessLevel: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectAccessLevel" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"int"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) deleteAttachment: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId
+	{
+		return [self deleteAttachment: handler action: nil sessionId: sessionId objectId: objectId attachmentId: attachmentId];
+	}
+
+	- (SoapRequest*) deleteAttachment: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: attachmentId forName: @"attachmentId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"deleteAttachment" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
 		[_request send];
 		return _request;
 	}
 
-	/* Returns NSString*.  */
-	- (SoapRequest*) login: (id <SoapDelegate>) handler userName: (NSString*) userName password: (NSString*) password
+	/* Returns long.  */
+	- (SoapRequest*) getProjectDiskUsage: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
 	{
-		return [self login: handler action: nil userName: userName password: password];
+		return [self getProjectDiskUsage: handler action: nil sessionId: sessionId projectId: projectId];
 	}
 
-	- (SoapRequest*) login: (id) _target action: (SEL) _action userName: (NSString*) userName password: (NSString*) password
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: password forName: @"password"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"login" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken
-	{
-		return [self getSessionId: handler action: nil oneTimeToken: oneTimeToken];
-	}
-
-	- (SoapRequest*) getSessionId: (id) _target action: (SEL) _action oneTimeToken: (NSString*) oneTimeToken
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getSessionId" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getConfigurationValue: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue
-	{
-		return [self getConfigurationValue: handler action: nil sessionId: sessionId keyValue: keyValue];
-	}
-
-	- (SoapRequest*) getConfigurationValue: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue
+	- (SoapRequest*) getProjectDiskUsage: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: keyValue forName: @"keyValue"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getConfigurationValue" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectDiskUsage" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) addProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
+	{
+		return [self addProjectMember: handler action: nil sessionId: sessionId projectId: projectId userName: userName];
+	}
+
+	- (SoapRequest*) addProjectMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"addProjectMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) removeProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
+	{
+		return [self removeProjectMember: handler action: nil sessionId: sessionId projectId: projectId userName: userName];
+	}
+
+	- (SoapRequest*) removeProjectMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"removeProjectMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZVersionInformationSoapList*.  */
+	- (SoapRequest*) getVersionInformationList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId folderId: (NSString*) folderId
+	{
+		return [self getVersionInformationList: handler action: nil sessionId: sessionId folderId: folderId];
+	}
+
+	- (SoapRequest*) getVersionInformationList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId folderId: (NSString*) folderId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: folderId forName: @"folderId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getVersionInformationList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZVersionInformationSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) getProjectData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self getProjectData: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) getProjectData: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectData" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapList*.  */
+	- (SoapRequest*) getSubprojectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+	{
+		return [self getSubprojectList: handler action: nil sessionId: sessionId projectId: projectId fetchHierarchyPath: fetchHierarchyPath];
+	}
+
+	- (SoapRequest*) getSubprojectList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getSubprojectList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) deleteProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound
+	{
+		return [self deleteProject: handler action: nil sessionId: sessionId projectId: projectId noNotification: noNotification forceDeleteEvenIfChildFound: forceDeleteEvenIfChildFound];
+	}
+
+	- (SoapRequest*) deleteProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: noNotification] forName: @"noNotification"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: forceDeleteEvenIfChildFound] forName: @"forceDeleteEvenIfChildFound"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"deleteProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) setProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota
+	{
+		return [self setProjectQuota: handler action: nil sessionId: sessionId projectId: projectId quota: quota];
+	}
+
+	- (SoapRequest*) setProjectQuota: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithLong: quota] forName: @"quota"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"setProjectQuota" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns long.  */
+	- (SoapRequest*) getProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self getProjectQuota: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) getProjectQuota: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectQuota" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapList*.  */
+	- (SoapRequest*) getProjectListForUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership
+	{
+		return [self getProjectListForUser: handler action: nil sessionId: sessionId username: username fetchHierarchyPath: fetchHierarchyPath includeGroupMembership: includeGroupMembership];
+	}
+
+	- (SoapRequest*) getProjectListForUser: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: includeGroupMembership] forName: @"includeGroupMembership"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getProjectListForUser" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getJSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken
+	{
+		return [self getJSessionId: handler action: nil oneTimeToken: oneTimeToken];
+	}
+
+	- (SoapRequest*) getJSessionId: (id) _target action: (SEL) _action oneTimeToken: (NSString*) oneTimeToken
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getJSessionId" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns BOOL.  */
+	- (SoapRequest*) hasGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId
+	{
+		return [self hasGeneralPermission: handler action: nil sessionId: sessionId username: username projectId: projectId operationString: operationString objectId: objectId];
+	}
+
+	- (SoapRequest*) hasGeneralPermission: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"hasGeneralPermission" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"BOOL"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserSoapList*.  */
+	- (SoapRequest*) listUsersWithPermissionOnObject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag
+	{
+		return [self listUsersWithPermissionOnObject: handler action: nil sessionId: sessionId operationString: operationString objectId: objectId flag: flag];
+	}
+
+	- (SoapRequest*) listUsersWithPermissionOnObject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithInt: flag] forName: @"flag"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"listUsersWithPermissionOnObject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserGroupSoapList*.  */
+	- (SoapRequest*) listGroupsWithGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited
+	{
+		return [self listGroupsWithGeneralPermission: handler action: nil sessionId: sessionId projectId: projectId operationString: operationString folderId: folderId includeInherited: includeInherited];
+	}
+
+	- (SoapRequest*) listGroupsWithGeneralPermission: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: folderId forName: @"folderId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: includeInherited] forName: @"includeInherited"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"listGroupsWithGeneralPermission" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserGroupSoapList alloc] autorelease]];
 		[_request send];
 		return _request;
 	}
@@ -279,205 +580,19 @@
 		return _request;
 	}
 
-	/* Returns long.  */
-	- (SoapRequest*) getCurrentTime: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
-	{
-		return [self getCurrentTime: handler action: nil sessionId: sessionId];
-	}
-
-	- (SoapRequest*) getCurrentTime: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getCurrentTime" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) getProjectData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self getProjectData: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) getProjectData: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectData" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) getCurrentUserData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
-	{
-		return [self getCurrentUserData: handler action: nil sessionId: sessionId];
-	}
-
-	- (SoapRequest*) getCurrentUserData: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getCurrentUserData" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZAttachmentSoapList*.  */
-	- (SoapRequest*) listAttachments: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId
-	{
-		return [self listAttachments: handler action: nil sessionId: sessionId objectId: objectId];
-	}
-
-	- (SoapRequest*) listAttachments: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId objectId: (NSString*) objectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"listAttachments" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZAttachmentSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns .  */
-	- (SoapRequest*) setParentProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId
-	{
-		return [self setParentProject: handler action: nil sessionId: sessionId projectId: projectId parentProjectId: parentProjectId];
-	}
-
-	- (SoapRequest*) setParentProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: parentProjectId forName: @"parentProjectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"setParentProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns BOOL.  */
-	- (SoapRequest*) isHostedMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
-	{
-		return [self isHostedMode: handler action: nil sessionId: sessionId];
-	}
-
-	- (SoapRequest*) isHostedMode: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"isHostedMode" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"BOOL"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createOrReplaceProjectTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId
-	{
-		return [self createOrReplaceProjectTemplate: handler action: nil sessionId: sessionId projectId: projectId title: title description: description contentChoices: contentChoices templateId: templateId];
-	}
-
-	- (SoapRequest*) createOrReplaceProjectTemplate: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: title forName: @"title"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: description forName: @"description"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: contentChoices forName: @"contentChoices"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: templateId forName: @"templateId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"createOrReplaceProjectTemplate" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createProjectFromTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description
-	{
-		return [self createProjectFromTemplate: handler action: nil sessionId: sessionId templateId: templateId name: name title: title description: description];
-	}
-
-	- (SoapRequest*) createProjectFromTemplate: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: templateId forName: @"templateId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: name forName: @"name"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: title forName: @"title"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: description forName: @"description"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"createProjectFromTemplate" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) listTemplates: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
-	{
-		return [self listTemplates: handler action: nil sessionId: sessionId];
-	}
-
-	- (SoapRequest*) listTemplates: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"listTemplates" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns .  */
-	- (SoapRequest*) deleteProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound
-	{
-		return [self deleteProject: handler action: nil sessionId: sessionId projectId: projectId noNotification: noNotification forceDeleteEvenIfChildFound: forceDeleteEvenIfChildFound];
-	}
-
-	- (SoapRequest*) deleteProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: noNotification] forName: @"noNotification"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: forceDeleteEvenIfChildFound] forName: @"forceDeleteEvenIfChildFound"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"deleteProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
 	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) getUserList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter
+	- (SoapRequest*) findUsers: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId queryString: (NSString*) queryString
 	{
-		return [self getUserList: handler action: nil sessionId: sessionId soapFilter: soapFilter];
+		return [self findUsers: handler action: nil sessionId: sessionId queryString: queryString];
 	}
 
-	- (SoapRequest*) getUserList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter
+	- (SoapRequest*) findUsers: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId queryString: (NSString*) queryString
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: soapFilter forName: @"soapFilter"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getUserList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: queryString forName: @"queryString"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"findUsers" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
 		[_request send];
 		return _request;
@@ -593,323 +708,96 @@
 		return _request;
 	}
 
-	/* Returns BOOL.  */
-	- (SoapRequest*) hasGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId
-	{
-		return [self hasGeneralPermission: handler action: nil sessionId: sessionId username: username projectId: projectId operationString: operationString objectId: objectId];
-	}
-
-	- (SoapRequest*) hasGeneralPermission: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"hasGeneralPermission" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"BOOL"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns int.  */
-	- (SoapRequest*) getProjectAccessLevel: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self getProjectAccessLevel: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) getProjectAccessLevel: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectAccessLevel" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"int"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getProjectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath
-	{
-		return [self getProjectList: handler action: nil sessionId: sessionId fetchHierarchyPath: fetchHierarchyPath];
-	}
-
-	- (SoapRequest*) getProjectList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) listUsersWithPermissionOnObject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag
-	{
-		return [self listUsersWithPermissionOnObject: handler action: nil sessionId: sessionId operationString: operationString objectId: objectId flag: flag];
-	}
-
-	- (SoapRequest*) listUsersWithPermissionOnObject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithInt: flag] forName: @"flag"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"listUsersWithPermissionOnObject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
 	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description
+	- (SoapRequest*) createOrReplaceProjectTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId
 	{
-		return [self createProject: handler action: nil sessionId: sessionId name: name title: title description: description];
+		return [self createOrReplaceProjectTemplate: handler action: nil sessionId: sessionId projectId: projectId title: title description: description contentChoices: contentChoices templateId: templateId];
 	}
 
-	- (SoapRequest*) createProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description
+	- (SoapRequest*) createOrReplaceProjectTemplate: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: name forName: @"name"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
 		[_params addObject: [[[SoapParameter alloc] initWithValue: title forName: @"title"] autorelease]];
 		[_params addObject: [[[SoapParameter alloc] initWithValue: description forName: @"description"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"createProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: contentChoices forName: @"contentChoices"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: templateId forName: @"templateId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"createOrReplaceProjectTemplate" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
 		[_request send];
 		return _request;
 	}
 
-	/* Returns .  */
-	- (SoapRequest*) deleteAttachment: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) createProjectFromTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description
 	{
-		return [self deleteAttachment: handler action: nil sessionId: sessionId objectId: objectId attachmentId: attachmentId];
+		return [self createProjectFromTemplate: handler action: nil sessionId: sessionId templateId: templateId name: name title: title description: description];
 	}
 
-	- (SoapRequest*) deleteAttachment: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId
+	- (SoapRequest*) createProjectFromTemplate: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: objectId forName: @"objectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: attachmentId forName: @"attachmentId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"deleteAttachment" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns long.  */
-	- (SoapRequest*) getProjectDiskUsage: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self getProjectDiskUsage: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) getProjectDiskUsage: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectDiskUsage" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns .  */
-	- (SoapRequest*) addProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
-	{
-		return [self addProjectMember: handler action: nil sessionId: sessionId projectId: projectId userName: userName];
-	}
-
-	- (SoapRequest*) addProjectMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"addProjectMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns .  */
-	- (SoapRequest*) removeProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
-	{
-		return [self removeProjectMember: handler action: nil sessionId: sessionId projectId: projectId userName: userName];
-	}
-
-	- (SoapRequest*) removeProjectMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"removeProjectMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZVersionInformationSoapList*.  */
-	- (SoapRequest*) getVersionInformationList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId folderId: (NSString*) folderId
-	{
-		return [self getVersionInformationList: handler action: nil sessionId: sessionId folderId: folderId];
-	}
-
-	- (SoapRequest*) getVersionInformationList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId folderId: (NSString*) folderId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: folderId forName: @"folderId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getVersionInformationList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZVersionInformationSoapList alloc] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: templateId forName: @"templateId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: name forName: @"name"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: title forName: @"title"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: description forName: @"description"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"createProjectFromTemplate" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
 		[_request send];
 		return _request;
 	}
 
 	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getSubprojectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+	- (SoapRequest*) listTemplates: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
 	{
-		return [self getSubprojectList: handler action: nil sessionId: sessionId projectId: projectId fetchHierarchyPath: fetchHierarchyPath];
+		return [self listTemplates: handler action: nil sessionId: sessionId];
 	}
 
-	- (SoapRequest*) getSubprojectList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath
+	- (SoapRequest*) listTemplates: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getSubprojectList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		NSString* _envelope = [Soap createEnvelope: @"listTemplates" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
 		[_request send];
 		return _request;
 	}
 
-	/* Returns .  */
-	- (SoapRequest*) setProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota
+	/* Returns BOOL.  */
+	- (SoapRequest*) isHostedMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
 	{
-		return [self setProjectQuota: handler action: nil sessionId: sessionId projectId: projectId quota: quota];
+		return [self isHostedMode: handler action: nil sessionId: sessionId];
 	}
 
-	- (SoapRequest*) setProjectQuota: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota
+	- (SoapRequest*) isHostedMode: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithLong: quota] forName: @"quota"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"setProjectQuota" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns long.  */
-	- (SoapRequest*) getProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self getProjectQuota: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) getProjectQuota: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectQuota" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getProjectListForUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership
-	{
-		return [self getProjectListForUser: handler action: nil sessionId: sessionId username: username fetchHierarchyPath: fetchHierarchyPath includeGroupMembership: includeGroupMembership];
-	}
-
-	- (SoapRequest*) getProjectListForUser: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: fetchHierarchyPath] forName: @"fetchHierarchyPath"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: includeGroupMembership] forName: @"includeGroupMembership"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getProjectListForUser" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getJSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken
-	{
-		return [self getJSessionId: handler action: nil oneTimeToken: oneTimeToken];
-	}
-
-	- (SoapRequest*) getJSessionId: (id) _target action: (SEL) _action oneTimeToken: (NSString*) oneTimeToken
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getJSessionId" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserGroupSoapList*.  */
-	- (SoapRequest*) listGroupsWithGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited
-	{
-		return [self listGroupsWithGeneralPermission: handler action: nil sessionId: sessionId projectId: projectId operationString: operationString folderId: folderId includeInherited: includeInherited];
-	}
-
-	- (SoapRequest*) listGroupsWithGeneralPermission: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: folderId forName: @"folderId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithBool: includeInherited] forName: @"includeInherited"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"listGroupsWithGeneralPermission" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserGroupSoapList alloc] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"isHostedMode" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"BOOL"];
 		[_request send];
 		return _request;
 	}
 
 	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) findUsers: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId queryString: (NSString*) queryString
+	- (SoapRequest*) getUserList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter
 	{
-		return [self findUsers: handler action: nil sessionId: sessionId queryString: queryString];
+		return [self getUserList: handler action: nil sessionId: sessionId soapFilter: soapFilter];
 	}
 
-	- (SoapRequest*) findUsers: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId queryString: (NSString*) queryString
+	- (SoapRequest*) getUserList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: queryString forName: @"queryString"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"findUsers" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: soapFilter forName: @"soapFilter"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getUserList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
 		[_request send];
 		return _request;
@@ -930,6 +818,95 @@
 		[_params addObject: [[[SoapParameter alloc] initWithValue: [NSNumber numberWithInt: accessLevel] forName: @"accessLevel"] autorelease]];
 		NSString* _envelope = [Soap createEnvelope: @"setProjectAccessLevel" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) setParentProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId
+	{
+		return [self setParentProject: handler action: nil sessionId: sessionId projectId: projectId parentProjectId: parentProjectId];
+	}
+
+	- (SoapRequest*) setParentProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: parentProjectId forName: @"parentProjectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"setParentProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) login: (id <SoapDelegate>) handler userName: (NSString*) userName password: (NSString*) password
+	{
+		return [self login: handler action: nil userName: userName password: password];
+	}
+
+	- (SoapRequest*) login: (id) _target action: (SEL) _action userName: (NSString*) userName password: (NSString*) password
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: password forName: @"password"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"login" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken
+	{
+		return [self getSessionId: handler action: nil oneTimeToken: oneTimeToken];
+	}
+
+	- (SoapRequest*) getSessionId: (id) _target action: (SEL) _action oneTimeToken: (NSString*) oneTimeToken
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getSessionId" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) keepAlive: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
+	{
+		return [self keepAlive: handler action: nil sessionId: sessionId];
+	}
+
+	- (SoapRequest*) keepAlive: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"keepAlive" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) loginWithToken: (id <SoapDelegate>) handler username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken
+	{
+		return [self loginWithToken: handler action: nil username: username oneTimeToken: oneTimeToken];
+	}
+
+	- (SoapRequest*) loginWithToken: (id) _target action: (SEL) _action username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"loginWithToken" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
 		[_request send];
 		return _request;
 	}
@@ -971,20 +948,19 @@
 		return _request;
 	}
 
-	/* Returns NSString*.  */
-	- (SoapRequest*) loginWithToken: (id <SoapDelegate>) handler username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken
+	/* Returns long.  */
+	- (SoapRequest*) getCurrentTime: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
 	{
-		return [self loginWithToken: handler action: nil username: username oneTimeToken: oneTimeToken];
+		return [self getCurrentTime: handler action: nil sessionId: sessionId];
 	}
 
-	- (SoapRequest*) loginWithToken: (id) _target action: (SEL) _action username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken
+	- (SoapRequest*) getCurrentTime: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
 		{
 		NSMutableArray* _params = [NSMutableArray array];
 		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: username forName: @"username"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: oneTimeToken forName: @"oneTimeToken"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"loginWithToken" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getCurrentTime" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"long"];
 		[_request send];
 		return _request;
 	}
@@ -1000,6 +976,42 @@
 		NSMutableArray* _params = [NSMutableArray array];
 		
 		NSString* _envelope = [Soap createEnvelope: @"getApiVersion" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) loginAnonymous: (id <SoapDelegate>) handler anonSharedSecret: (NSString*) anonSharedSecret
+	{
+		return [self loginAnonymous: handler action: nil anonSharedSecret: anonSharedSecret];
+	}
+
+	- (SoapRequest*) loginAnonymous: (id) _target action: (SEL) _action anonSharedSecret: (NSString*) anonSharedSecret
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: anonSharedSecret forName: @"anonSharedSecret"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"loginAnonymous" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) doMandatoryPasswordChange: (id <SoapDelegate>) handler userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword
+	{
+		return [self doMandatoryPasswordChange: handler action: nil userName: userName oldPassword: oldPassword newPassword: newPassword];
+	}
+
+	- (SoapRequest*) doMandatoryPasswordChange: (id) _target action: (SEL) _action userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: oldPassword forName: @"oldPassword"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: newPassword forName: @"newPassword"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"doMandatoryPasswordChange" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
 		[_request send];
 		return _request;
@@ -1023,6 +1035,42 @@
 		return _request;
 	}
 
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) lockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self lockProject: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) lockProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"lockProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) unLockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self unLockProject: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) unLockProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"unLockProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
 	/* Returns SDZProjectMemberSoapList*.  */
 	- (SoapRequest*) getProjectMemberList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
 	{
@@ -1037,6 +1085,96 @@
 		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
 		NSString* _envelope = [Soap createEnvelope: @"getProjectMemberList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectMemberSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserSoapList*.  */
+	- (SoapRequest*) listProjectAdmins: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+	{
+		return [self listProjectAdmins: handler action: nil sessionId: sessionId projectId: projectId];
+	}
+
+	- (SoapRequest*) listProjectAdmins: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"listProjectAdmins" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns .  */
+	- (SoapRequest*) addProjectGroupMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName
+	{
+		return [self addProjectGroupMember: handler action: nil sessionId: sessionId projectGroupId: projectGroupId userName: userName];
+	}
+
+	- (SoapRequest*) addProjectGroupMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: projectGroupId forName: @"projectGroupId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"addProjectGroupMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserGroupSoapList*.  */
+	- (SoapRequest*) getUserGroupList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
+	{
+		return [self getUserGroupList: handler action: nil sessionId: sessionId];
+	}
+
+	- (SoapRequest*) getUserGroupList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getUserGroupList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserGroupSoapList alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) getUserByEmail: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId email: (NSString*) email
+	{
+		return [self getUserByEmail: handler action: nil sessionId: sessionId email: email];
+	}
+
+	- (SoapRequest*) getUserByEmail: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId email: (NSString*) email
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: email forName: @"email"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getUserByEmail" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) getUserByName: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fullname: (NSString*) fullname
+	{
+		return [self getUserByName: handler action: nil sessionId: sessionId fullname: fullname];
+	}
+
+	- (SoapRequest*) getUserByName: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId fullname: (NSString*) fullname
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: fullname forName: @"fullname"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getUserByName" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
 		[_request send];
 		return _request;
 	}
@@ -1154,168 +1292,6 @@
 	}
 
 	/* Returns NSString*.  */
-	- (SoapRequest*) loginAnonymous: (id <SoapDelegate>) handler anonSharedSecret: (NSString*) anonSharedSecret
-	{
-		return [self loginAnonymous: handler action: nil anonSharedSecret: anonSharedSecret];
-	}
-
-	- (SoapRequest*) loginAnonymous: (id) _target action: (SEL) _action anonSharedSecret: (NSString*) anonSharedSecret
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: anonSharedSecret forName: @"anonSharedSecret"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"loginAnonymous" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserGroupSoapList*.  */
-	- (SoapRequest*) getUserGroupList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
-	{
-		return [self getUserGroupList: handler action: nil sessionId: sessionId];
-	}
-
-	- (SoapRequest*) getUserGroupList: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getUserGroupList" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserGroupSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) doMandatoryPasswordChange: (id <SoapDelegate>) handler userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword
-	{
-		return [self doMandatoryPasswordChange: handler action: nil userName: userName oldPassword: oldPassword newPassword: newPassword];
-	}
-
-	- (SoapRequest*) doMandatoryPasswordChange: (id) _target action: (SEL) _action userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: oldPassword forName: @"oldPassword"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: newPassword forName: @"newPassword"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"doMandatoryPasswordChange" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) lockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self lockProject: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) lockProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"lockProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) unLockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self unLockProject: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) unLockProject: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"unLockProject" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZProjectSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) listProjectAdmins: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-	{
-		return [self listProjectAdmins: handler action: nil sessionId: sessionId projectId: projectId];
-	}
-
-	- (SoapRequest*) listProjectAdmins: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectId: (NSString*) projectId
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectId forName: @"projectId"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"listProjectAdmins" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapList alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns .  */
-	- (SoapRequest*) addProjectGroupMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName
-	{
-		return [self addProjectGroupMember: handler action: nil sessionId: sessionId projectGroupId: projectGroupId userName: userName];
-	}
-
-	- (SoapRequest*) addProjectGroupMember: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: projectGroupId forName: @"projectGroupId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"addProjectGroupMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) getUserByEmail: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId email: (NSString*) email
-	{
-		return [self getUserByEmail: handler action: nil sessionId: sessionId email: email];
-	}
-
-	- (SoapRequest*) getUserByEmail: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId email: (NSString*) email
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: email forName: @"email"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getUserByEmail" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) getUserByName: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fullname: (NSString*) fullname
-	{
-		return [self getUserByName: handler action: nil sessionId: sessionId fullname: fullname];
-	}
-
-	- (SoapRequest*) getUserByName: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId fullname: (NSString*) fullname
-		{
-		NSMutableArray* _params = [NSMutableArray array];
-		
-		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
-		[_params addObject: [[[SoapParameter alloc] initWithValue: fullname forName: @"fullname"] autorelease]];
-		NSString* _envelope = [Soap createEnvelope: @"getUserByName" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
-		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: [[SDZUserSoapDO alloc] autorelease]];
-		[_request send];
-		return _request;
-	}
-
-	/* Returns NSString*.  */
 	- (SoapRequest*) getUserEffectiveMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId
 	{
 		return [self getUserEffectiveMode: handler action: nil sessionId: sessionId];
@@ -1327,6 +1303,24 @@
 		
 		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
 		NSString* _envelope = [Soap createEnvelope: @"getUserEffectiveMode" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getConfigurationValue: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue
+	{
+		return [self getConfigurationValue: handler action: nil sessionId: sessionId keyValue: keyValue];
+	}
+
+	- (SoapRequest*) getConfigurationValue: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: keyValue forName: @"keyValue"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"getConfigurationValue" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"NSString"];
 		[_request send];
 		return _request;
@@ -1730,6 +1724,24 @@
 		[_params addObject: [[[SoapParameter alloc] initWithValue: userName forName: @"userName"] autorelease]];
 		NSString* _envelope = [Soap createEnvelope: @"removeUserGroupMember" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
 		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @""];
+		[_request send];
+		return _request;
+	}
+
+	/* Returns BOOL.  */
+	- (SoapRequest*) hasSitewideRolePermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString
+	{
+		return [self hasSitewideRolePermission: handler action: nil sessionId: sessionId operationString: operationString];
+	}
+
+	- (SoapRequest*) hasSitewideRolePermission: (id) _target action: (SEL) _action sessionId: (NSString*) sessionId operationString: (NSString*) operationString
+		{
+		NSMutableArray* _params = [NSMutableArray array];
+		
+		[_params addObject: [[[SoapParameter alloc] initWithValue: sessionId forName: @"sessionId"] autorelease]];
+		[_params addObject: [[[SoapParameter alloc] initWithValue: operationString forName: @"operationString"] autorelease]];
+		NSString* _envelope = [Soap createEnvelope: @"hasSitewideRolePermission" forNamespace: self.namespace withParameters: _params withHeaders: self.headers];
+		SoapRequest* _request = [SoapRequest create: _target action: _action service: self soapAction: @"" postData: _envelope deserializeTo: @"BOOL"];
 		[_request send];
 		return _request;
 	}

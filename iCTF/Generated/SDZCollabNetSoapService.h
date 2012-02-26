@@ -18,24 +18,24 @@
 #import "SDZSystemFault.h"
 #import "SDZUserLimitExceededFault.h"
 #import "SDZIllegalArgumentFault.h"
-#import "SDZLoginFault.h"
 #import "SDZObjectAlreadyExistsFault.h"
-#import "SDZChangeParentNotAllowedFault.h"
+#import "SDZRemoveOnlyProjectAdminFault.h"
 #import "SDZParentRoleUsedInChildProjectsFault.h"
 #import "SDZChildProjectsFoundFault.h"
 #import "SDZSearchQuerySyntaxFault.h"
-#import "SDZRemoveOnlyProjectAdminFault.h"
+#import "SDZChangeParentNotAllowedFault.h"
+#import "SDZLoginFault.h"
 #import "SDZInvalidPasswordFault.h"
 #import "SDZInvalidOperationFault.h"
 #import "SDZProjectAlreadyLockedFault.h"
 #import "SDZIllegalGroupMemberAddFault.h"
 #import "SDZArrayOf_tns1_AttachmentSoapRow.h"
-#import "SDZArrayOf_xsd_string.h"
 #import "SDZArrayOf_tns1_ProjectSoapRow.h"
-#import "SDZArrayOf_tns1_UserSoapRow.h"
-#import "SDZArrayOf_tns1_ProjectGroupSoapRow.h"
 #import "SDZArrayOf_tns1_VersionInformationSoapRow.h"
+#import "SDZArrayOf_tns1_UserSoapRow.h"
 #import "SDZArrayOf_tns1_UserGroupSoapRow.h"
+#import "SDZArrayOf_tns1_ProjectGroupSoapRow.h"
+#import "SDZArrayOf_xsd_string.h"
 #import "SDZArrayOf_tns1_ProjectMemberSoapRow.h"
 #import "SDZArrayOf_tns1_CommentSoapRow.h"
 #import "SDZArrayOf_tns1_AssociationSoapRow.h"
@@ -43,10 +43,10 @@
 #import "SDZArrayOf_tns1_ProjectGroupMemberSoapRow.h"
 #import "SDZAttachmentSoapList.h"
 #import "SDZProjectSoapList.h"
-#import "SDZUserSoapList.h"
-#import "SDZProjectGroupSoapList.h"
 #import "SDZVersionInformationSoapList.h"
+#import "SDZUserSoapList.h"
 #import "SDZUserGroupSoapList.h"
+#import "SDZProjectGroupSoapList.h"
 #import "SDZProjectMemberSoapList.h"
 #import "SDZCommentSoapList.h"
 #import "SDZAssociationSoapList.h"
@@ -59,8 +59,8 @@
 #import "SDZSoapFilter.h"
 #import "SDZSoapNamedValues.h"
 #import "SDZUserGroupSoapDO.h"
-#import "SDZProjectGroupSoapDO.h"
 #import "SDZUserGroupSoapRow.h"
+#import "SDZProjectGroupSoapDO.h"
 #import "SDZProjectMemberSoapRow.h"
 #import "SDZProjectGroupMemberSoapRow.h"
 #import "SDZVersionInformationSoapRow.h"
@@ -91,69 +91,93 @@
 	- (SoapRequest*) getUserData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username;
 	- (SoapRequest*) getUserData: (id) target action: (SEL) action sessionId: (NSString*) sessionId username: (NSString*) username;
 
-	/* Returns .  */
-	- (SoapRequest*) keepAlive: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
-	- (SoapRequest*) keepAlive: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) login: (id <SoapDelegate>) handler userName: (NSString*) userName password: (NSString*) password;
-	- (SoapRequest*) login: (id) target action: (SEL) action userName: (NSString*) userName password: (NSString*) password;
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken;
-	- (SoapRequest*) getSessionId: (id) target action: (SEL) action oneTimeToken: (NSString*) oneTimeToken;
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getConfigurationValue: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue;
-	- (SoapRequest*) getConfigurationValue: (id) target action: (SEL) action sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue;
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) createUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId userName: (NSString*) userName email: (NSString*) email fullName: (NSString*) fullName organization: (NSString*) organization locale: (NSString*) locale timeZone: (NSString*) timeZone licenseType: (NSString*) licenseType isSuperUser: (BOOL) isSuperUser isRestrictedUser: (BOOL) isRestrictedUser password: (NSString*) password;
-	- (SoapRequest*) createUser: (id) target action: (SEL) action sessionId: (NSString*) sessionId userName: (NSString*) userName email: (NSString*) email fullName: (NSString*) fullName organization: (NSString*) organization locale: (NSString*) locale timeZone: (NSString*) timeZone licenseType: (NSString*) licenseType isSuperUser: (BOOL) isSuperUser isRestrictedUser: (BOOL) isRestrictedUser password: (NSString*) password;
-
-	/* Returns long.  */
-	- (SoapRequest*) getCurrentTime: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
-	- (SoapRequest*) getCurrentTime: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) getProjectData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) getProjectData: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	/* Returns SDZAttachmentSoapList*.  */
+	- (SoapRequest*) listAttachments: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
+	- (SoapRequest*) listAttachments: (id) target action: (SEL) action sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
 
 	/* Returns SDZUserSoapDO*.  */
 	- (SoapRequest*) getCurrentUserData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
 	- (SoapRequest*) getCurrentUserData: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
 
-	/* Returns SDZAttachmentSoapList*.  */
-	- (SoapRequest*) listAttachments: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
-	- (SoapRequest*) listAttachments: (id) target action: (SEL) action sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
+	/* Returns SDZProjectSoapList*.  */
+	- (SoapRequest*) getProjectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
+	- (SoapRequest*) getProjectList: (id) target action: (SEL) action sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
+
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) createProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
+	- (SoapRequest*) createProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
+
+	/* Returns int.  */
+	- (SoapRequest*) getProjectAccessLevel: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) getProjectAccessLevel: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
 
 	/* Returns .  */
-	- (SoapRequest*) setParentProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId;
-	- (SoapRequest*) setParentProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId;
+	- (SoapRequest*) deleteAttachment: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId;
+	- (SoapRequest*) deleteAttachment: (id) target action: (SEL) action sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId;
 
-	/* Returns BOOL.  */
-	- (SoapRequest*) isHostedMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
-	- (SoapRequest*) isHostedMode: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
+	/* Returns long.  */
+	- (SoapRequest*) getProjectDiskUsage: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) getProjectDiskUsage: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
+	/* Returns .  */
+	- (SoapRequest*) addProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
+	- (SoapRequest*) addProjectMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
+
+	/* Returns .  */
+	- (SoapRequest*) removeProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
+	- (SoapRequest*) removeProjectMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
+
+	/* Returns SDZVersionInformationSoapList*.  */
+	- (SoapRequest*) getVersionInformationList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId folderId: (NSString*) folderId;
+	- (SoapRequest*) getVersionInformationList: (id) target action: (SEL) action sessionId: (NSString*) sessionId folderId: (NSString*) folderId;
 
 	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createOrReplaceProjectTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId;
-	- (SoapRequest*) createOrReplaceProjectTemplate: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId;
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createProjectFromTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
-	- (SoapRequest*) createProjectFromTemplate: (id) target action: (SEL) action sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
+	- (SoapRequest*) getProjectData: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) getProjectData: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
 
 	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) listTemplates: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
-	- (SoapRequest*) listTemplates: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
+	- (SoapRequest*) getSubprojectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
+	- (SoapRequest*) getSubprojectList: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
 
 	/* Returns .  */
 	- (SoapRequest*) deleteProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound;
 	- (SoapRequest*) deleteProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId noNotification: (BOOL) noNotification forceDeleteEvenIfChildFound: (BOOL) forceDeleteEvenIfChildFound;
 
+	/* Returns .  */
+	- (SoapRequest*) setProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota;
+	- (SoapRequest*) setProjectQuota: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota;
+
+	/* Returns long.  */
+	- (SoapRequest*) getProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) getProjectQuota: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
+	/* Returns SDZProjectSoapList*.  */
+	- (SoapRequest*) getProjectListForUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership;
+	- (SoapRequest*) getProjectListForUser: (id) target action: (SEL) action sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getJSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken;
+	- (SoapRequest*) getJSessionId: (id) target action: (SEL) action oneTimeToken: (NSString*) oneTimeToken;
+
+	/* Returns BOOL.  */
+	- (SoapRequest*) hasGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId;
+	- (SoapRequest*) hasGeneralPermission: (id) target action: (SEL) action sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId;
+
 	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) getUserList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter;
-	- (SoapRequest*) getUserList: (id) target action: (SEL) action sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter;
+	- (SoapRequest*) listUsersWithPermissionOnObject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag;
+	- (SoapRequest*) listUsersWithPermissionOnObject: (id) target action: (SEL) action sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag;
+
+	/* Returns SDZUserGroupSoapList*.  */
+	- (SoapRequest*) listGroupsWithGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited;
+	- (SoapRequest*) listGroupsWithGeneralPermission: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited;
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) createUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId userName: (NSString*) userName email: (NSString*) email fullName: (NSString*) fullName organization: (NSString*) organization locale: (NSString*) locale timeZone: (NSString*) timeZone licenseType: (NSString*) licenseType isSuperUser: (BOOL) isSuperUser isRestrictedUser: (BOOL) isRestrictedUser password: (NSString*) password;
+	- (SoapRequest*) createUser: (id) target action: (SEL) action sessionId: (NSString*) sessionId userName: (NSString*) userName email: (NSString*) email fullName: (NSString*) fullName organization: (NSString*) organization locale: (NSString*) locale timeZone: (NSString*) timeZone licenseType: (NSString*) licenseType isSuperUser: (BOOL) isSuperUser isRestrictedUser: (BOOL) isRestrictedUser password: (NSString*) password;
+
+	/* Returns SDZUserSoapList*.  */
+	- (SoapRequest*) findUsers: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
+	- (SoapRequest*) findUsers: (id) target action: (SEL) action sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
 
 	/* Returns SDZProjectGroupSoapDO*.  */
 	- (SoapRequest*) createProjectGroup: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId title: (NSString*) title description: (NSString*) description;
@@ -179,77 +203,49 @@
 	- (SoapRequest*) deleteProjectGroup: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId forceDeleteEvenIfMemberProjectFound: (BOOL) forceDeleteEvenIfMemberProjectFound;
 	- (SoapRequest*) deleteProjectGroup: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId forceDeleteEvenIfMemberProjectFound: (BOOL) forceDeleteEvenIfMemberProjectFound;
 
-	/* Returns BOOL.  */
-	- (SoapRequest*) hasGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId;
-	- (SoapRequest*) hasGeneralPermission: (id) target action: (SEL) action sessionId: (NSString*) sessionId username: (NSString*) username projectId: (NSString*) projectId operationString: (NSString*) operationString objectId: (NSString*) objectId;
-
-	/* Returns int.  */
-	- (SoapRequest*) getProjectAccessLevel: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) getProjectAccessLevel: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getProjectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
-	- (SoapRequest*) getProjectList: (id) target action: (SEL) action sessionId: (NSString*) sessionId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
-
-	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) listUsersWithPermissionOnObject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag;
-	- (SoapRequest*) listUsersWithPermissionOnObject: (id) target action: (SEL) action sessionId: (NSString*) sessionId operationString: (NSString*) operationString objectId: (NSString*) objectId flag: (int) flag;
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) createOrReplaceProjectTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId;
+	- (SoapRequest*) createOrReplaceProjectTemplate: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId title: (NSString*) title description: (NSString*) description contentChoices: (SDZArrayOf_xsd_string*) contentChoices templateId: (NSString*) templateId;
 
 	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) createProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
-	- (SoapRequest*) createProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
-
-	/* Returns .  */
-	- (SoapRequest*) deleteAttachment: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId;
-	- (SoapRequest*) deleteAttachment: (id) target action: (SEL) action sessionId: (NSString*) sessionId objectId: (NSString*) objectId attachmentId: (NSString*) attachmentId;
-
-	/* Returns long.  */
-	- (SoapRequest*) getProjectDiskUsage: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) getProjectDiskUsage: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns .  */
-	- (SoapRequest*) addProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
-	- (SoapRequest*) addProjectMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
-
-	/* Returns .  */
-	- (SoapRequest*) removeProjectMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
-	- (SoapRequest*) removeProjectMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId userName: (NSString*) userName;
-
-	/* Returns SDZVersionInformationSoapList*.  */
-	- (SoapRequest*) getVersionInformationList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId folderId: (NSString*) folderId;
-	- (SoapRequest*) getVersionInformationList: (id) target action: (SEL) action sessionId: (NSString*) sessionId folderId: (NSString*) folderId;
+	- (SoapRequest*) createProjectFromTemplate: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
+	- (SoapRequest*) createProjectFromTemplate: (id) target action: (SEL) action sessionId: (NSString*) sessionId templateId: (NSString*) templateId name: (NSString*) name title: (NSString*) title description: (NSString*) description;
 
 	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getSubprojectList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
-	- (SoapRequest*) getSubprojectList: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId fetchHierarchyPath: (BOOL) fetchHierarchyPath;
+	- (SoapRequest*) listTemplates: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
+	- (SoapRequest*) listTemplates: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
 
-	/* Returns .  */
-	- (SoapRequest*) setProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota;
-	- (SoapRequest*) setProjectQuota: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId quota: (long) quota;
-
-	/* Returns long.  */
-	- (SoapRequest*) getProjectQuota: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) getProjectQuota: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns SDZProjectSoapList*.  */
-	- (SoapRequest*) getProjectListForUser: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership;
-	- (SoapRequest*) getProjectListForUser: (id) target action: (SEL) action sessionId: (NSString*) sessionId username: (NSString*) username fetchHierarchyPath: (BOOL) fetchHierarchyPath includeGroupMembership: (BOOL) includeGroupMembership;
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) getJSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken;
-	- (SoapRequest*) getJSessionId: (id) target action: (SEL) action oneTimeToken: (NSString*) oneTimeToken;
-
-	/* Returns SDZUserGroupSoapList*.  */
-	- (SoapRequest*) listGroupsWithGeneralPermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited;
-	- (SoapRequest*) listGroupsWithGeneralPermission: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId operationString: (NSString*) operationString folderId: (NSString*) folderId includeInherited: (BOOL) includeInherited;
+	/* Returns BOOL.  */
+	- (SoapRequest*) isHostedMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
+	- (SoapRequest*) isHostedMode: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
 
 	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) findUsers: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
-	- (SoapRequest*) findUsers: (id) target action: (SEL) action sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
+	- (SoapRequest*) getUserList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter;
+	- (SoapRequest*) getUserList: (id) target action: (SEL) action sessionId: (NSString*) sessionId soapFilter: (SDZSoapFilter*) soapFilter;
 
 	/* Returns .  */
 	- (SoapRequest*) setProjectAccessLevel: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId accessLevel: (int) accessLevel;
 	- (SoapRequest*) setProjectAccessLevel: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId accessLevel: (int) accessLevel;
+
+	/* Returns .  */
+	- (SoapRequest*) setParentProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId;
+	- (SoapRequest*) setParentProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId parentProjectId: (NSString*) parentProjectId;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) login: (id <SoapDelegate>) handler userName: (NSString*) userName password: (NSString*) password;
+	- (SoapRequest*) login: (id) target action: (SEL) action userName: (NSString*) userName password: (NSString*) password;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getSessionId: (id <SoapDelegate>) handler oneTimeToken: (NSString*) oneTimeToken;
+	- (SoapRequest*) getSessionId: (id) target action: (SEL) action oneTimeToken: (NSString*) oneTimeToken;
+
+	/* Returns .  */
+	- (SoapRequest*) keepAlive: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
+	- (SoapRequest*) keepAlive: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) loginWithToken: (id <SoapDelegate>) handler username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken;
+	- (SoapRequest*) loginWithToken: (id) target action: (SEL) action username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken;
 
 	/* Returns BOOL.  */
 	- (SoapRequest*) changePassword: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId userName: (NSString*) userName newPassword: (NSString*) newPassword;
@@ -259,21 +255,57 @@
 	- (SoapRequest*) logoff: (id <SoapDelegate>) handler userName: (NSString*) userName sessionId: (NSString*) sessionId;
 	- (SoapRequest*) logoff: (id) target action: (SEL) action userName: (NSString*) userName sessionId: (NSString*) sessionId;
 
-	/* Returns NSString*.  */
-	- (SoapRequest*) loginWithToken: (id <SoapDelegate>) handler username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken;
-	- (SoapRequest*) loginWithToken: (id) target action: (SEL) action username: (NSString*) username oneTimeToken: (NSString*) oneTimeToken;
+	/* Returns long.  */
+	- (SoapRequest*) getCurrentTime: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
+	- (SoapRequest*) getCurrentTime: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
 
 	/* Returns NSString*.  */
 	- (SoapRequest*) getApiVersion: (id <SoapDelegate>) handler;
 	- (SoapRequest*) getApiVersion: (id) target action: (SEL) action;
 
+	/* Returns NSString*.  */
+	- (SoapRequest*) loginAnonymous: (id <SoapDelegate>) handler anonSharedSecret: (NSString*) anonSharedSecret;
+	- (SoapRequest*) loginAnonymous: (id) target action: (SEL) action anonSharedSecret: (NSString*) anonSharedSecret;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) doMandatoryPasswordChange: (id <SoapDelegate>) handler userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword;
+	- (SoapRequest*) doMandatoryPasswordChange: (id) target action: (SEL) action userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword;
+
 	/* Returns SDZProjectSoapList*.  */
 	- (SoapRequest*) findProjects: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
 	- (SoapRequest*) findProjects: (id) target action: (SEL) action sessionId: (NSString*) sessionId queryString: (NSString*) queryString;
 
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) lockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) lockProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
+	/* Returns SDZProjectSoapDO*.  */
+	- (SoapRequest*) unLockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) unLockProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
 	/* Returns SDZProjectMemberSoapList*.  */
 	- (SoapRequest*) getProjectMemberList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
 	- (SoapRequest*) getProjectMemberList: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
+	/* Returns SDZUserSoapList*.  */
+	- (SoapRequest*) listProjectAdmins: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+	- (SoapRequest*) listProjectAdmins: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
+
+	/* Returns .  */
+	- (SoapRequest*) addProjectGroupMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName;
+	- (SoapRequest*) addProjectGroupMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName;
+
+	/* Returns SDZUserGroupSoapList*.  */
+	- (SoapRequest*) getUserGroupList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
+	- (SoapRequest*) getUserGroupList: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) getUserByEmail: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId email: (NSString*) email;
+	- (SoapRequest*) getUserByEmail: (id) target action: (SEL) action sessionId: (NSString*) sessionId email: (NSString*) email;
+
+	/* Returns SDZUserSoapDO*.  */
+	- (SoapRequest*) getUserByName: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fullname: (NSString*) fullname;
+	- (SoapRequest*) getUserByName: (id) target action: (SEL) action sessionId: (NSString*) sessionId fullname: (NSString*) fullname;
 
 	/* Returns SDZCommentSoapList*.  */
 	- (SoapRequest*) getCommentList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
@@ -300,44 +332,12 @@
 	- (SoapRequest*) reindexObject: (id) target action: (SEL) action sessionId: (NSString*) sessionId objectId: (NSString*) objectId;
 
 	/* Returns NSString*.  */
-	- (SoapRequest*) loginAnonymous: (id <SoapDelegate>) handler anonSharedSecret: (NSString*) anonSharedSecret;
-	- (SoapRequest*) loginAnonymous: (id) target action: (SEL) action anonSharedSecret: (NSString*) anonSharedSecret;
-
-	/* Returns SDZUserGroupSoapList*.  */
-	- (SoapRequest*) getUserGroupList: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
-	- (SoapRequest*) getUserGroupList: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
-
-	/* Returns NSString*.  */
-	- (SoapRequest*) doMandatoryPasswordChange: (id <SoapDelegate>) handler userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword;
-	- (SoapRequest*) doMandatoryPasswordChange: (id) target action: (SEL) action userName: (NSString*) userName oldPassword: (NSString*) oldPassword newPassword: (NSString*) newPassword;
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) lockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) lockProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns SDZProjectSoapDO*.  */
-	- (SoapRequest*) unLockProject: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) unLockProject: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns SDZUserSoapList*.  */
-	- (SoapRequest*) listProjectAdmins: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-	- (SoapRequest*) listProjectAdmins: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectId: (NSString*) projectId;
-
-	/* Returns .  */
-	- (SoapRequest*) addProjectGroupMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName;
-	- (SoapRequest*) addProjectGroupMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId projectGroupId: (NSString*) projectGroupId userName: (NSString*) userName;
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) getUserByEmail: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId email: (NSString*) email;
-	- (SoapRequest*) getUserByEmail: (id) target action: (SEL) action sessionId: (NSString*) sessionId email: (NSString*) email;
-
-	/* Returns SDZUserSoapDO*.  */
-	- (SoapRequest*) getUserByName: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId fullname: (NSString*) fullname;
-	- (SoapRequest*) getUserByName: (id) target action: (SEL) action sessionId: (NSString*) sessionId fullname: (NSString*) fullname;
-
-	/* Returns NSString*.  */
 	- (SoapRequest*) getUserEffectiveMode: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;
 	- (SoapRequest*) getUserEffectiveMode: (id) target action: (SEL) action sessionId: (NSString*) sessionId;
+
+	/* Returns NSString*.  */
+	- (SoapRequest*) getConfigurationValue: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue;
+	- (SoapRequest*) getConfigurationValue: (id) target action: (SEL) action sessionId: (NSString*) sessionId keyValue: (NSString*) keyValue;
 
 	/* Returns SDZProjectSoapDO*.  */
 	- (SoapRequest*) getProjectByPath: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId projectPath: (NSString*) projectPath;
@@ -426,6 +426,10 @@
 	/* Returns .  */
 	- (SoapRequest*) removeUserGroupMember: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId userGroupId: (NSString*) userGroupId userName: (NSString*) userName;
 	- (SoapRequest*) removeUserGroupMember: (id) target action: (SEL) action sessionId: (NSString*) sessionId userGroupId: (NSString*) userGroupId userName: (NSString*) userName;
+
+	/* Returns BOOL.  */
+	- (SoapRequest*) hasSitewideRolePermission: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId operationString: (NSString*) operationString;
+	- (SoapRequest*) hasSitewideRolePermission: (id) target action: (SEL) action sessionId: (NSString*) sessionId operationString: (NSString*) operationString;
 
 	/* Returns NSString*.  */
 	- (SoapRequest*) getBroadCastMessage: (id <SoapDelegate>) handler sessionId: (NSString*) sessionId;

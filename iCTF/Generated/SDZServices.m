@@ -9,7 +9,7 @@
 
 @synthesize logging, server, defaultServer;
 
-@synthesize collabNetSoapService;
+@synthesize trackerAppSoapService;
 
 
 #pragma mark Initialization
@@ -44,7 +44,7 @@
 
 -(void)updateServices{
 
-	[self updateService: self.collabNetSoapService];
+	[self updateService: self.trackerAppSoapService];
 }
 
 -(void)updateService:(SoapService*)service{
@@ -56,11 +56,11 @@
 #pragma mark Getter Overrides
 
 
--(SDZCollabNetSoapService*)collabNetSoapService{
-	if(collabNetSoapService == nil) {
-		collabNetSoapService = [[SDZCollabNetSoapService alloc] init];
+-(SDZTrackerAppSoapService*)trackerAppSoapService{
+	if(trackerAppSoapService == nil) {
+		trackerAppSoapService = [[SDZTrackerAppSoapService alloc] init];
 	}
-	return collabNetSoapService;
+	return trackerAppSoapService;
 }
 
 

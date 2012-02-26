@@ -87,8 +87,8 @@
         binding = [[SDZCollabNetSoapService alloc] 
                    initWithUrl: [[NSString alloc] initWithFormat:@"http://%@/ce-soap60/services/CollabNet", serverName ]];    
     }
-    //[ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
-    [self testLogin];
+    [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
+    //[self testLogin];
 }
 
 - (void)showDashboardPage
