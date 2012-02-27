@@ -10,11 +10,11 @@
 
 @interface SDZArtifactSoapList : SoapObject
 {
-	SDZArrayOf_tns1_ArtifactSoapRow* _dataRows;
+	NSMutableArray* _dataRows;
 	
 }
 		
-	@property (retain, nonatomic) SDZArrayOf_tns1_ArtifactSoapRow* dataRows;
+	@property (retain, nonatomic) NSMutableArray* dataRows;
 
 	+ (SDZArtifactSoapList*) newWithNode: (CXMLNode*) node;
 	- (id) initWithNode: (CXMLNode*) node;

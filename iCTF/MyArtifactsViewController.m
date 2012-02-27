@@ -47,10 +47,11 @@
     NSString *serverInfo = [[NSUserDefaults standardUserDefaults] valueForKey:@"Server"];
     
     binding = [[SDZTrackerAppSoapService alloc] 
-               initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];    
+               initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
+        
     [ binding getArtifactList:self action:@selector(handleMyArtifacts:) sessionId:soapSessionId 
                   containerId:@"" filters: nil];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -123,18 +124,25 @@
 
 - (void)handleMyArtifacts:(id) value
 {
-    if ([value isKindOfClass:([SDZArtifactSoapList class])])
-    {
-        SDZArtifactSoapList *artifactList = value;
-        SDZArrayOf_tns1_ArtifactSoapRow *artifactRows = artifactList.dataRows;
-        
-        for (SDZArtifactSoapRow *row in artifactRows)
-        {
-            NSLog(@"%@", row.description); 
-        }
-        NSLog(@"Inside hte loop");
+    // Handle errors
+    if([value isKindOfClass:[NSError class]]) {
+        NSLog(@"%@", value);
+        return;
     }
-    NSLog(@"Im in here"); 
+    
+    // Handle faults
+    if([value isKindOfClass:[SoapFault class]]) {
+        NSLog(@"%@", value);
+        return;
+    } 
+
+    SDZArtifactSoapList* artfList = (SDZArtifactSoapList *) value;
+    NSMutableArray *artifacts = artfList.dataRows;
+    
+    for (SDZArtifactSoapRow *record in artifacts) {
+        NSLog(@"%@", record.description);
+    }
+    NSLog(@"Inside hte loop");
 }
 
 /*
