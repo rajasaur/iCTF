@@ -169,7 +169,7 @@
 			output = [Soap deserialize:element];
 		} else {
 			if([deserializeTo respondsToSelector: @selector(initWithNode:)]) {
-				element = [element childAtIndex:0];
+				//element = [element childAtIndex:0];
 				output = [deserializeTo initWithNode: element];
 			} else {
 				NSString* value = [[[element childAtIndex:0] childAtIndex:0] stringValue];
