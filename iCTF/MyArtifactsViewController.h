@@ -10,8 +10,8 @@
 
 
 @interface MyArtifactsViewController : UITableViewController {
-    
 }
 
+@property (nonatomic, retain) UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) NSMutableArray *artifactList;
 @end

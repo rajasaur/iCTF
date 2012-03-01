@@ -19,7 +19,7 @@
 
 @implementation LoginViewController
 
-@synthesize navigationController;
+@synthesize navigationController, spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -93,8 +93,13 @@
                    initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/CollabNet", serverInfo ]];    
     }
     
- 
+    // Initiate the spinner
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.spinner setCenter:CGPointMake(165,234)]; 
+    [self.view addSubview:self.spinner]; 
+
     [self storeUsername:user Server:serverInfo];
+    [self.spinner startAnimating];
     [ binding login:self action:@selector(handleLogin:) userName:user password:userPass];
     //[self testLogin];
 }
@@ -130,6 +135,7 @@
 
 // This will be called when we actually start using SOAP calls.
 - (void)handleLogin:(id)value {
+    [self.spinner stopAnimating];
     NSString *display;
     if ([value isKindOfClass:([SoapFault class])]) {
         display = [ value faultString ];

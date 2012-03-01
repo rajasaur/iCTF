@@ -13,19 +13,23 @@
 
 @implementation MyArtifactsViewController
 
-@synthesize artifactList;
+@synthesize artifactList, spinner;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [self.spinner setCenter:CGPointMake(160,124)]; 
+        [self.view addSubview:self.spinner]; 
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [self.artifactList release];
+    [self.spinner release];
     [super dealloc];
 }
 
@@ -84,6 +88,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.spinner startAnimating];
     [super viewWillAppear:animated];
 }
 
@@ -112,21 +117,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.artifactList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MyArtifactsCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -134,6 +136,11 @@
     }
     
     // Configure the cell...
+    [[cell textLabel] setText: [[self.artifactList objectAtIndex:[indexPath row]] description]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size: 16];
+    [[cell textLabel] setFont: font];
+    [font release];	
     
     return cell;
 }
@@ -143,22 +150,26 @@
     // Handle errors
     if([value isKindOfClass:[NSError class]]) {
         NSLog(@"%@", value);
+        [self.spinner stopAnimating];
         return;
     }
     
     // Handle faults
     if([value isKindOfClass:[SoapFault class]]) {
         NSLog(@"%@", value);
+        [self.spinner stopAnimating];
         return;
     } 
 
     SDZArtifactSoapList* artfList = (SDZArtifactSoapList *) value;
-    NSMutableArray *artifacts = artfList.dataRows;
+    self.artifactList = artfList.dataRows;
     
-    for (SDZArtifactSoapRow *record in artifacts) {
+    for (SDZArtifactSoapRow *record in self.artifactList) {
         NSLog(@"%@", record.description);
     }
     NSLog(@"Inside hte loop");
+    [self.spinner stopAnimating];
+    [[self tableView ] reloadData];	
 }
 
 /*

@@ -19,6 +19,7 @@
 }
 
 @property (nonatomic, retain) UINavigationController *navigationController;
+@property (nonatomic, retain) UIActivityIndicatorView *spinner;
 
 - (IBAction) login:(id)sender;
 @end
