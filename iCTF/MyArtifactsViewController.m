@@ -10,6 +10,7 @@
 #import "SDZTrackerAppSoapService.h"
 #import "SDZSoapFilter.h"
 #import "SDZArrayOf_tns1_SoapFilter.h"
+#import "ViewArtifactViewController.h"
 
 @implementation MyArtifactsViewController
 
@@ -69,8 +70,8 @@
     binding = [[SDZTrackerAppSoapService alloc] 
                initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
         
-    [ binding getArtifactList:self action:@selector(handleMyArtifacts:) sessionId:soapSessionId 
-                  containerId:@"" filters: soapFilters];
+    [self.spinner startAnimating];
+    [ binding getArtifactList:self action:@selector(handleMyArtifacts:) sessionId:soapSessionId containerId:@"" filters: soapFilters];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -88,7 +89,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.spinner startAnimating];
     [super viewWillAppear:animated];
 }
 
@@ -132,16 +132,21 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
     }
     
     // Configure the cell...
-    [[cell textLabel] setText: [[self.artifactList objectAtIndex:[indexPath row]] description]];
+    NSString *cellText = [[NSString alloc] initWithFormat:@"%@: %@", 
+            [[self.artifactList objectAtIndex:[indexPath row]] _id] ,
+                          [[self.artifactList objectAtIndex:[indexPath row]] title]];
+    [[cell textLabel] setText: cellText];
+    NSString *projectTitle = [[NSString alloc] initWithFormat:@"Filed in Project: '%@'", [[self.artifactList objectAtIndex:[indexPath row]] projectTitle]];
+    [[cell detailTextLabel] setText: projectTitle];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size: 16];
-    [[cell textLabel] setFont: font];
-    [font release];	
-    
+
     return cell;
 }
 
@@ -164,12 +169,21 @@
     SDZArtifactSoapList* artfList = (SDZArtifactSoapList *) value;
     self.artifactList = artfList.dataRows;
     
-    for (SDZArtifactSoapRow *record in self.artifactList) {
-        NSLog(@"%@", record.description);
-    }
-    NSLog(@"Inside hte loop");
     [self.spinner stopAnimating];
     [[self tableView ] reloadData];	
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellText = [[NSString alloc] initWithFormat:@"%@: %@", 
+                          [[self.artifactList objectAtIndex:[indexPath row]] _id] ,
+                          [[self.artifactList objectAtIndex:[indexPath row]] title]];
+    
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:16.0];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return labelSize.height + 20;
 }
 
 /*
@@ -215,14 +229,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    ViewArtifactViewController *viewArtifactViewController = [[ViewArtifactViewController alloc] init];
+    viewArtifactViewController.title = @"View Artifact Data";
+    [self.navigationController pushViewController:viewArtifactViewController animated:YES];
+    [viewArtifactViewController release];
 }
 
 @end

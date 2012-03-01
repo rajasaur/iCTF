@@ -19,7 +19,7 @@
 
 @implementation LoginViewController
 
-@synthesize navigationController, spinner;
+@synthesize navigationController, spinner, server, username, password, protocol;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,6 +79,28 @@
     Boolean protocolStatus = [ protocol isOn ];
     SDZCollabNetSoapService *binding;
 
+    if ([[serverName stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+    {
+        [status setText:@"Please enter a valid server"];
+        [server becomeFirstResponder];
+        return;
+    }
+    if ([[user stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+    {
+        [status setText:@"Please enter a username"];
+        [username becomeFirstResponder];
+        return;
+    }
+    if ([userPass length] == 0)
+    {
+        [status setText:@"Please enter a password"];
+        [password becomeFirstResponder];
+        return;
+    }
+    
+    // Reset the status text
+    [status setText:@""];
+    
     NSString *serverInfo;
     
     if (protocolStatus) {
@@ -137,6 +159,7 @@
 - (void)handleLogin:(id)value {
     [self.spinner stopAnimating];
     NSString *display;
+    
     if ([value isKindOfClass:([SoapFault class])]) {
         display = [ value faultString ];
         [status setText:display ];

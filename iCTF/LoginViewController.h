@@ -18,6 +18,11 @@
  
 }
 
+@property (nonatomic, retain) UITextField *server;
+@property (nonatomic, retain) UITextField *username;
+@property (nonatomic, retain) UITextField *password;
+@property (nonatomic, retain) UISwitch *protocol;
+
 @property (nonatomic, retain) UINavigationController *navigationController;
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;
 

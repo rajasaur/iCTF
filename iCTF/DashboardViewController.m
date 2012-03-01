@@ -9,6 +9,8 @@
 #import "DashboardViewController.h"
 #import "AccountInfoViewController.h"
 #import "MyArtifactsViewController.h"
+#import "LoginViewController.h"
+#import "SDZCollabNetSoapService.h"
 
 #define ORANGE [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0f]
 
@@ -142,10 +144,49 @@
             myArtifactsViewController.title = @"My Artifacts";
             [self.navigationController pushViewController:myArtifactsViewController animated:YES];
             [myArtifactsViewController release];
+            break;
+        }
+        case 3:
+        {
+            [self logoutApplication];
+            break;
         }
         default:
             break;
     }
+}
 	
+- (void)handleLogout:(id)value 
+{
+    LoginViewController *loginController =  (LoginViewController *) 
+    [self.navigationController parentViewController];
+    [[loginController server] setText:@""];
+    [[loginController username] setText:@""];
+    [[loginController password] setText:@""];
+    [[loginController protocol] setOn:TRUE];
+    
+    // Reset the user related values
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Server"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SoapSessionId"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
+    
+    [self.navigationController dismissModalViewControllerAnimated:TRUE];
+    
+}
+
+-(void) logoutApplication
+{
+    // Get the sessionkey and call myartifacts
+    SDZCollabNetSoapService *binding;
+    NSString *soapSessionId = [[NSUserDefaults standardUserDefaults] valueForKey:@"SoapSessionId"];
+    NSString *serverInfo = [[NSUserDefaults standardUserDefaults] valueForKey:@"Server"];
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey: @"Username"];
+    
+    binding = [[SDZCollabNetSoapService alloc] 
+               initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/CollabNet", serverInfo ]];   
+    
+    [ binding logoff:self action:@selector(handleLogout:) 
+            userName: username sessionId: soapSessionId];
+    
 }
 @end

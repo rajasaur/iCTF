@@ -13,4 +13,8 @@
     IBOutlet UILabel *username;
 }
 
+@property (nonatomic,retain) NSString *server;
+@property (nonatomic,retain) NSString *fullname;
+@property (nonatomic, retain) NSString *ctfVersion;
+@property (nonatomic, retain) UIActivityIndicatorView *spinner;
 @end
