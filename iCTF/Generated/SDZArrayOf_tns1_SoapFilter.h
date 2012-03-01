@@ -9,12 +9,14 @@
 
 @interface SDZArrayOf_tns1_SoapFilter : SoapObject
 {
-	
+	NSArray *filters;
 }
 		
 
+@property(nonatomic,retain) NSArray *filters;
 	+ (SDZArrayOf_tns1_SoapFilter*) newWithNode: (CXMLNode*) node;
 	- (id) initWithNode: (CXMLNode*) node;
+    - (id) initWithArray: (NSArray*) filterElements;
 	- (NSMutableString*) serialize;
 	- (NSMutableString*) serialize: (NSString*) nodeName;
 	- (NSMutableString*) serializeAttributes;

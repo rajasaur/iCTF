@@ -8,6 +8,8 @@
 
 #import "MyArtifactsViewController.h"
 #import "SDZTrackerAppSoapService.h"
+#import "SDZSoapFilter.h"
+#import "SDZArrayOf_tns1_SoapFilter.h"
 
 @implementation MyArtifactsViewController
 
@@ -45,12 +47,26 @@
     SDZTrackerAppSoapService *binding;
     NSString *soapSessionId = [[NSUserDefaults standardUserDefaults] valueForKey:@"SoapSessionId"];
     NSString *serverInfo = [[NSUserDefaults standardUserDefaults] valueForKey:@"Server"];
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"Username"];
+    
+    SDZSoapFilter *assignedToSelfFilter = [[SDZSoapFilter alloc] init];
+    assignedToSelfFilter.name = @"assignedTo";
+    assignedToSelfFilter.value = username;
+    SDZSoapFilter *openStatusFilter = [[SDZSoapFilter alloc]init ];
+    openStatusFilter.name = @"statusClass";
+    openStatusFilter.value = @"Open";
+    
+    NSArray *filters = [[NSArray alloc] initWithObjects: assignedToSelfFilter, openStatusFilter, nil];
+    SDZArrayOf_tns1_SoapFilter *soapFilters = [[SDZArrayOf_tns1_SoapFilter alloc] initWithArray:filters];
+    
+    [ assignedToSelfFilter release];
+    [ openStatusFilter release];
     
     binding = [[SDZTrackerAppSoapService alloc] 
                initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
         
     [ binding getArtifactList:self action:@selector(handleMyArtifacts:) sessionId:soapSessionId 
-                  containerId:@"" filters: nil];
+                  containerId:@"" filters: soapFilters];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
