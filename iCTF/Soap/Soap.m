@@ -459,7 +459,7 @@
 		[formatter setLocale: enUS];
 		[enUS release];
 		[formatter setLenient: YES];
-		[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+		[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
 	}
 	return formatter;
 }

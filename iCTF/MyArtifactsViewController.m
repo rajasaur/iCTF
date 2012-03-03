@@ -229,8 +229,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewArtifactViewController *viewArtifactViewController = [[ViewArtifactViewController alloc] init];
+    ViewArtifactViewController *viewArtifactViewController = [[ViewArtifactViewController alloc] initWithArtifactId:[[self.artifactList objectAtIndex:[indexPath row]] _id]];
     viewArtifactViewController.title = @"View Artifact Data";
+
     [self.navigationController pushViewController:viewArtifactViewController animated:YES];
     [viewArtifactViewController release];
 }

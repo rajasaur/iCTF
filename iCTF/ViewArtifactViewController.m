@@ -25,8 +25,23 @@
     return self;
 }
 
+- (id) init
+{
+    self = [super init ];
+    return self;
+}
+
+- (id) initWithArtifactId:(NSString *)artfId
+{
+    self = [self initWithStyle:UITableViewStyleGrouped ];
+    self.artifactId = artfId;
+
+    return self;
+}
+
 - (void)dealloc
 {
+    [self.spinner release];
     [super dealloc];
 }
 
@@ -43,18 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Get the sessionkey and call myartifacts
-    SDZTrackerAppSoapService *binding;
-    NSString *soapSessionId = [[NSUserDefaults standardUserDefaults] valueForKey:@"SoapSessionId"];
-    NSString *serverInfo = [[NSUserDefaults standardUserDefaults] valueForKey:@"Server"];
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"Username"];
     
-    binding = [[SDZTrackerAppSoapService alloc] 
-               initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
-    
-    //[self.spinner startAnimating];
-    //[ [binding getArtifactData:self action:@selector(handleArtifactData:) sessionId:soapSessionId artifactId:self.artifactId];
-
 }
 
 - (void)viewDidUnload
@@ -72,6 +76,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    // Get the sessionkey and call myartifacts
+    SDZTrackerAppSoapService *binding;
+    NSString *soapSessionId = [[NSUserDefaults standardUserDefaults] valueForKey:@"SoapSessionId"];
+    NSString *serverInfo = [[NSUserDefaults standardUserDefaults] valueForKey:@"Server"];
+    
+    binding = [[SDZTrackerAppSoapService alloc] 
+               initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
+    
+    [self.spinner startAnimating];
+    [binding getArtifactData:self action:@selector(handleArtifactData:) sessionId:soapSessionId artifactId:self.artifactId];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -90,32 +105,137 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (NSDateFormatter *) dateFormatter
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSLocale* enUS = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [formatter setLocale: enUS];
+    [enUS release];
+    [formatter setLenient: YES];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+    return formatter;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+    // Return the number of sections -- one for summary and one for fields
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    if (section == 0)
+    {
+        return 6;
+    } 
+    else
+    {
+        return 5;
+    }
+}
+
+- (NSString *) getDetailedTextForSection:(int)section AndRow:(int)row
+{
+    NSString *detailText = nil;
+    if (section == 0)
+    {
+        switch (row)
+        {
+            case 0:
+            {
+                detailText = [self.artifactData folderId];
+                break;
+            }
+            case 1:
+            {
+                detailText = [self.artifactData title];
+                break;
+            }
+            case 2:
+            {
+                detailText = [self.artifactData description];
+                break;
+            }
+            case 3:
+            {
+                detailText = [self.artifactData createdBy];
+                break;
+            }
+            case 4:
+            {
+                detailText = [[self dateFormatter] stringFromDate: [self.artifactData createdDate]];
+                break;
+            }
+            case 5:
+            {
+                detailText = [[self dateFormatter] stringFromDate:[self.artifactData lastModifiedDate]];
+                break;
+            }
+        }
+    }
+    else
+    {
+        detailText = @"DetailedText";
+    }
+    return detailText;
+}
+
+- (NSString *) getCellTextForSection:(int)section AndRow:(int) row
+{
+    NSString *labelText = nil;
+    
+    if (section == 0)
+    {
+        switch (row)
+        {
+            case 0:
+                labelText = @"Tracker";
+                break;
+            case 1:
+                labelText = @"Title";
+                break;
+            case 2:
+                labelText = @"Description";
+                break;
+            case 3:
+                labelText = @"Created by";
+                break;
+            case 4:
+                labelText = @"Created on";
+                break;
+            case 5:
+                labelText = @"Modified";
+                break;
+        }
+    } 
+    else
+    {
+        labelText = @"Dummy Text for now";
+    }
+    return labelText;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ArtifactData";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
     }
-    
-    // Configure the cell...
+ 
+    NSString *labelText = [self getCellTextForSection:[indexPath section] AndRow:[indexPath row]];
+    NSString *detailText = [self getDetailedTextForSection:[indexPath section] AndRow:[indexPath row]];
+                            
+
+    [[cell textLabel] setText:labelText];
+    [[cell detailTextLabel] setText: detailText];
     
     return cell;
 }
@@ -137,6 +257,7 @@
     
     // Do something with the SDZArtifactSoapDO* result
     self.artifactData = (SDZArtifactSoapDO*)value;
+    [[self tableView ] reloadData];
         
 }
      
@@ -191,6 +312,17 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellText = [self getDetailedTextForSection:[indexPath section] AndRow:[indexPath row]];
+    
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:16.0];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return labelSize.height + 20;
 }
 
 @end

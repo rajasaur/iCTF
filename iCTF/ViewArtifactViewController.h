@@ -17,4 +17,5 @@
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) SDZArtifactSoapDO *artifactData;
 
+-(id) initWithArtifactId: (NSString *) artfId;
 @end
