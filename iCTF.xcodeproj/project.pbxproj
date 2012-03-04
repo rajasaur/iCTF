@@ -134,6 +134,9 @@
 		3501734414FA342F00C05760 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 350172C614FA342B00C05760 /* CXMLNode_XPathExtensions.m */; };
 		3501734814FA378D00C05760 /* MyArtifactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3501734614FA378D00C05760 /* MyArtifactsViewController.m */; };
 		3501734914FA378D00C05760 /* MyArtifactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3501734714FA378D00C05760 /* MyArtifactsViewController.xib */; };
+		358B2FE01503748D007482F8 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B2FDF1503748D007482F8 /* PullRefreshTableViewController.m */; };
+		358B2FE51503750A007482F8 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 358B2FE415037509007482F8 /* arrow.png */; };
+		358B2FE815037691007482F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358B2FE715037691007482F8 /* QuartzCore.framework */; };
 		3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3592A7441466D1CE00C60346 /* SystemConfiguration.framework */; };
 		3594E29D14F8F57100B2EB72 /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */; };
 		3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3594E29C14F8F57100B2EB72 /* AccountInfoViewController.xib */; };
@@ -148,6 +151,8 @@
 		359C01DB14507820006A8450 /* iCTFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 359C01DA14507820006A8450 /* iCTFAppDelegate.m */; };
 		35A22FF014EFF8310006E747 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A22FEE14EFF8300006E747 /* DashboardViewController.m */; };
 		35A22FF114EFF8310006E747 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A22FEF14EFF8300006E747 /* DashboardViewController.xib */; };
+		35FD418214FFFF010066D5E6 /* ViewArtifactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FD418014FFFEFF0066D5E6 /* ViewArtifactViewController.m */; };
+		35FD418314FFFF010066D5E6 /* ViewArtifactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FD418114FFFF000066D5E6 /* ViewArtifactViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -406,6 +411,10 @@
 		3501734514FA378D00C05760 /* MyArtifactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyArtifactsViewController.h; sourceTree = "<group>"; };
 		3501734614FA378D00C05760 /* MyArtifactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyArtifactsViewController.m; sourceTree = "<group>"; };
 		3501734714FA378D00C05760 /* MyArtifactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyArtifactsViewController.xib; sourceTree = "<group>"; };
+		358B2FDE1503748D007482F8 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
+		358B2FDF1503748D007482F8 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		358B2FE415037509007482F8 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		358B2FE715037691007482F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3592A7441466D1CE00C60346 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3594E29A14F8F57100B2EB72 /* AccountInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoViewController.h; sourceTree = "<group>"; };
 		3594E29B14F8F57100B2EB72 /* AccountInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoViewController.m; sourceTree = "<group>"; };
@@ -428,6 +437,9 @@
 		35A22FEE14EFF8300006E747 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		35A22FEF14EFF8300006E747 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		35B33BF0146665DD0083ED32 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		35FD417F14FFFEFF0066D5E6 /* ViewArtifactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewArtifactViewController.h; sourceTree = "<group>"; };
+		35FD418014FFFEFF0066D5E6 /* ViewArtifactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewArtifactViewController.m; sourceTree = "<group>"; };
+		35FD418114FFFF000066D5E6 /* ViewArtifactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewArtifactViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +447,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358B2FE815037691007482F8 /* QuartzCore.framework in Frameworks */,
 				3592A7451466D1CF00C60346 /* SystemConfiguration.framework in Frameworks */,
 				359C01CB1450781F006A8450 /* UIKit.framework in Frameworks */,
 				359C01CD1450781F006A8450 /* Foundation.framework in Frameworks */,
@@ -718,12 +731,21 @@
 			path = TouchXML;
 			sourceTree = "<group>";
 		};
+		358B2FE615037520007482F8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				358B2FE415037509007482F8 /* arrow.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		359C01BB1450781E006A8450 = {
 			isa = PBXGroup;
 			children = (
+				358B2FE715037691007482F8 /* QuartzCore.framework */,
+				359C01D01450781F006A8450 /* iCTF */,
 				3592A7441466D1CE00C60346 /* SystemConfiguration.framework */,
 				35B33BF0146665DD0083ED32 /* CFNetwork.framework */,
-				359C01D01450781F006A8450 /* iCTF */,
 				359C01C91450781F006A8450 /* Frameworks */,
 				359C01C71450781F006A8450 /* Products */,
 			);
@@ -750,6 +772,9 @@
 		359C01D01450781F006A8450 /* iCTF */ = {
 			isa = PBXGroup;
 			children = (
+				358B2FE615037520007482F8 /* images */,
+				358B2FDE1503748D007482F8 /* PullRefreshTableViewController.h */,
+				358B2FDF1503748D007482F8 /* PullRefreshTableViewController.m */,
 				359867FC14F0019F0038BFEB /* MainWindow.xib */,
 				35B33BD814665C210083ED32 /* SOAP Sources */,
 				359C01D914507820006A8450 /* iCTFAppDelegate.h */,
@@ -767,6 +792,9 @@
 				3501734514FA378D00C05760 /* MyArtifactsViewController.h */,
 				3501734614FA378D00C05760 /* MyArtifactsViewController.m */,
 				3501734714FA378D00C05760 /* MyArtifactsViewController.xib */,
+				35FD417F14FFFEFF0066D5E6 /* ViewArtifactViewController.h */,
+				35FD418014FFFEFF0066D5E6 /* ViewArtifactViewController.m */,
+				35FD418114FFFF000066D5E6 /* ViewArtifactViewController.xib */,
 			);
 			path = iCTF;
 			sourceTree = "<group>";
@@ -848,6 +876,8 @@
 				359867FE14F0019F0038BFEB /* MainWindow.xib in Resources */,
 				3594E29E14F8F57100B2EB72 /* AccountInfoViewController.xib in Resources */,
 				3501734914FA378D00C05760 /* MyArtifactsViewController.xib in Resources */,
+				35FD418314FFFF010066D5E6 /* ViewArtifactViewController.xib in Resources */,
+				358B2FE51503750A007482F8 /* arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +1019,8 @@
 				3501734314FA342F00C05760 /* CXMLNode_PrivateExtensions.m in Sources */,
 				3501734414FA342F00C05760 /* CXMLNode_XPathExtensions.m in Sources */,
 				3501734814FA378D00C05760 /* MyArtifactsViewController.m in Sources */,
+				35FD418214FFFF010066D5E6 /* ViewArtifactViewController.m in Sources */,
+				358B2FE01503748D007482F8 /* PullRefreshTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
