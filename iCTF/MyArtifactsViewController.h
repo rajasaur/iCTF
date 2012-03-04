@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 
 
-@interface MyArtifactsViewController : UITableViewController {
+@interface MyArtifactsViewController : PullRefreshTableViewController {
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;

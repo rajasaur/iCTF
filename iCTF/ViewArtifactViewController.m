@@ -11,7 +11,7 @@
 
 
 @implementation ViewArtifactViewController
-@synthesize artifactData, spinner, artifactId;
+@synthesize artifactData, spinner, artifactId, artifactIdFetched;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -120,21 +120,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections -- one for summary and one for fields
-    return 2;
+    if (![self artifactIdFetched])
+    {
+        return 0;
+    }
+    // Return the number of sections -- one for summary, one for regular metadata, one for release fields and one for estimates
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
+    if (![self artifactIdFetched])
+    {
+        return 0;
+    }
+    
+    int numberOfRows = 0;    
     if (section == 0)
     {
-        return 6;
+        numberOfRows = 6;
     } 
-    else
+    else if (section == 1)
     {
-        return 5;
+        numberOfRows =  7;
     }
+    else if (section == 2)
+    {
+        numberOfRows = 2;
+    }
+    else if (section == 3)
+    {
+        numberOfRows = 3;
+    }
+    return numberOfRows;
 }
 
 - (NSString *) getDetailedTextForSection:(int)section AndRow:(int)row
@@ -176,10 +194,61 @@
             }
         }
     }
-    else
+    else if (section == 1)
     {
-        detailText = @"DetailedText";
+        switch (row)
+        {
+            case 0:
+                detailText = [self.artifactData group];
+                break;
+            case 1:
+                detailText = [self.artifactData status];
+                break;
+            case 2:
+                detailText = [self.artifactData category];
+                break;
+            case 3:
+                detailText = [self.artifactData customer];
+                break;
+            case 4:
+                detailText = [[NSNumber numberWithInt:[self.artifactData priority]] stringValue];
+                break;
+            case 5:
+                detailText = [self.artifactData assignedTo];
+                break;
+            case 6:
+                detailText = [self.artifactData planningFolderId];
+                break;
+        }
     }
+    else if (section == 2)
+    {
+        switch (row)
+        {
+            case 0:
+                detailText = [self.artifactData reportedReleaseId];
+                break;
+            case 1:
+                detailText = [self.artifactData resolvedReleaseId];
+                break;
+        }
+    }
+    else if (section == 3)
+    {
+        switch (row)
+        {
+            case 0:
+                detailText = [[NSNumber numberWithInt:[self.artifactData estimatedEffort]] stringValue];
+                break;
+            case 1:
+                detailText = [[NSNumber numberWithInt:[self.artifactData remainingEffort]] stringValue];
+                break;
+            case 2:
+                detailText = [[NSNumber numberWithInt:[self.artifactData actualEffort]] stringValue];
+                break;
+        }
+    }
+
     return detailText;
 }
 
@@ -211,25 +280,81 @@
                 break;
         }
     } 
-    else
+    else if (section == 1)
     {
-        labelText = @"Dummy Text for now";
+        switch (row)
+        {
+            case 0:
+                labelText = @"Group";
+                break;
+            case 1:
+                labelText = @"Status";
+                break;
+            case 2:
+                labelText = @"Category";
+                break;
+            case 3:
+                labelText = @"Customer";
+                break;
+            case 4:
+                labelText = @"Priority";
+                break;
+            case 5:
+                labelText = @"Assignee";
+                break;
+            case 6:
+                labelText = @"Planned in";
+                break;
+        }
+    }
+    else if (section == 2)
+    {
+        switch (row)
+        {
+            case 0:
+                labelText = @"Reported";
+                break;
+            case 1:
+                labelText = @"Fixed";
+                break;
+        }
+    }
+    else if (section == 3)
+    {
+        switch (row)
+        {
+            case 0:
+                labelText = @"Estimated";
+                break;
+            case 1:
+                labelText = @"Remaining";
+                break;
+            case 2:
+                labelText = @"Actual";
+                break;
+        }
     }
     return labelText;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"ArtifactData";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
+        cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.detailTextLabel.numberOfLines = 0;
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
     }
- 
+    
+    if (![self artifactIdFetched])
+    {
+        return cell;
+    }
+    
     NSString *labelText = [self getCellTextForSection:[indexPath section] AndRow:[indexPath row]];
     NSString *detailText = [self getDetailedTextForSection:[indexPath section] AndRow:[indexPath row]];
                             
@@ -257,6 +382,7 @@
     
     // Do something with the SDZArtifactSoapDO* result
     self.artifactData = (SDZArtifactSoapDO*)value;
+    self.artifactIdFetched = TRUE;
     [[self tableView ] reloadData];
         
 }
@@ -317,12 +443,39 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellText = [self getDetailedTextForSection:[indexPath section] AndRow:[indexPath row]];
+    if ([cellText length] == 0)
+    {
+        cellText = @"DummyString";
+    }
     
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:16.0];
-    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(200.0f, MAXFLOAT);
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-    
+    	
     return labelSize.height + 20;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = nil;
+    switch (section)
+    {
+        case 0:
+            sectionTitle = [[NSString alloc] initWithFormat:@"%@: %@", 
+                            [self.artifactData _id], 
+                            [self.artifactData title]];
+                                  
+            break;
+        case 1:
+            sectionTitle = @"Base Fields";
+            break;
+        case 2:
+            sectionTitle = @"Release Information";
+            break;
+        case 3:
+            sectionTitle = @"Effort Information"; 
+            break;
+    }
+    return sectionTitle;
+}
 @end

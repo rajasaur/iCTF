@@ -42,12 +42,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void) retrieveMyArtifacts
 {
-    [super viewDidLoad];
-
     // Get the sessionkey and call myartifacts
     SDZTrackerAppSoapService *binding;
     NSString *soapSessionId = [[NSUserDefaults standardUserDefaults] valueForKey:@"SoapSessionId"];
@@ -69,9 +65,18 @@
     
     binding = [[SDZTrackerAppSoapService alloc] 
                initWithUrl: [[NSString alloc] initWithFormat:@"%@/ce-soap60/services/TrackerApp", serverInfo ]];   
-        
+    
     [self.spinner startAnimating];
     [ binding getArtifactList:self action:@selector(handleMyArtifacts:) sessionId:soapSessionId containerId:@"" filters: soapFilters];
+}
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    [self retrieveMyArtifacts];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -234,6 +239,14 @@
 
     [self.navigationController pushViewController:viewArtifactViewController animated:YES];
     [viewArtifactViewController release];
+}
+
+// For the PullToRefresh stuff
+- (void)refresh {
+    [self retrieveMyArtifacts];
+    // This is just a demo. Override this method with your custom reload action.
+    // Don't forget to call stopLoading at the end.
+    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];
 }
 
 @end

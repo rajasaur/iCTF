@@ -13,6 +13,7 @@
 @interface ViewArtifactViewController : UITableViewController {
     
 }
+@property (nonatomic, readwrite) BOOL artifactIdFetched;
 @property (nonatomic, retain) NSString *artifactId;
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) SDZArtifactSoapDO *artifactData;
