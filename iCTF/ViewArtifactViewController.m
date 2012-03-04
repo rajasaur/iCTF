@@ -42,6 +42,8 @@
 - (void)dealloc
 {
     [self.spinner release];
+    [self.artifactData release];
+    [self.artifactId release];
     [super dealloc];
 }
 
@@ -155,6 +157,14 @@
     return numberOfRows;
 }
 
+- (NSString *) valueOrDefaultString:(NSString *) str
+{
+    if ([str length] == 0)
+        return @"None";
+    else
+        return str;
+}
+
 - (NSString *) getDetailedTextForSection:(int)section AndRow:(int)row
 {
     NSString *detailText = nil;
@@ -164,17 +174,17 @@
         {
             case 0:
             {
-                detailText = [self.artifactData folderId];
+                detailText = [self valueOrDefaultString:[self.artifactData folderId]];
                 break;
             }
             case 1:
             {
-                detailText = [self.artifactData title];
+                detailText = [self valueOrDefaultString:[self.artifactData title]];
                 break;
             }
             case 2:
             {
-                detailText = [self.artifactData description];
+                detailText = [self valueOrDefaultString:[self.artifactData description]];
                 break;
             }
             case 3:
@@ -199,25 +209,25 @@
         switch (row)
         {
             case 0:
-                detailText = [self.artifactData group];
+                detailText = [self valueOrDefaultString:[self.artifactData group]];
                 break;
             case 1:
-                detailText = [self.artifactData status];
+                detailText = [self valueOrDefaultString:[self.artifactData status]];
                 break;
             case 2:
-                detailText = [self.artifactData category];
+                detailText = [self valueOrDefaultString:[self.artifactData category]];
                 break;
             case 3:
-                detailText = [self.artifactData customer];
+                detailText = [self valueOrDefaultString:[self.artifactData customer]];
                 break;
             case 4:
                 detailText = [[NSNumber numberWithInt:[self.artifactData priority]] stringValue];
                 break;
             case 5:
-                detailText = [self.artifactData assignedTo];
+                detailText = [self valueOrDefaultString:[self.artifactData assignedTo]];
                 break;
             case 6:
-                detailText = [self.artifactData planningFolderId];
+                detailText = [self valueOrDefaultString:[self.artifactData planningFolderId]];
                 break;
         }
     }
@@ -226,10 +236,10 @@
         switch (row)
         {
             case 0:
-                detailText = [self.artifactData reportedReleaseId];
+                detailText = [self valueOrDefaultString:[self.artifactData reportedReleaseId]];
                 break;
             case 1:
-                detailText = [self.artifactData resolvedReleaseId];
+                detailText = [self valueOrDefaultString:[self.artifactData resolvedReleaseId]];
                 break;
         }
     }
@@ -348,6 +358,7 @@
         cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.detailTextLabel.numberOfLines = 0;
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if (![self artifactIdFetched])
