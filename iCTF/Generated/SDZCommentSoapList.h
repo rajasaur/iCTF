@@ -10,11 +10,11 @@
 
 @interface SDZCommentSoapList : SoapObject
 {
-	SDZArrayOf_tns1_CommentSoapRow* _dataRows;
+	NSMutableArray* _dataRows;
 	
 }
 		
-	@property (retain, nonatomic) SDZArrayOf_tns1_CommentSoapRow* dataRows;
+	@property (retain, nonatomic) NSMutableArray* dataRows;
 
 	+ (SDZCommentSoapList*) newWithNode: (CXMLNode*) node;
 	- (id) initWithNode: (CXMLNode*) node;

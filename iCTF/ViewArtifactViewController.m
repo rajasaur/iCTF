@@ -35,6 +35,9 @@
 {
     self = [self initWithStyle:UITableViewStyleGrouped ];
     self.artifactId = artfId;
+    UITabBarItem *tabItem = [self tabBarItem];
+    [tabItem setTitle:@"Artifact"];
+    [tabItem setImage:[UIImage imageNamed:@"tracker.png"]];
 
     return self;
 }

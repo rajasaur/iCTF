@@ -10,7 +10,7 @@
 #import "SDZTrackerAppSoapService.h"
 #import "SDZSoapFilter.h"
 #import "SDZArrayOf_tns1_SoapFilter.h"
-#import "ViewArtifactViewController.h"
+#import "ViewArtifactMainViewController.h"
 
 @implementation MyArtifactsViewController
 
@@ -234,11 +234,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewArtifactViewController *viewArtifactViewController = [[ViewArtifactViewController alloc] initWithArtifactId:[[self.artifactList objectAtIndex:[indexPath row]] _id]];
+    ViewArtifactMainViewController *viewArtifactViewController = [[ViewArtifactMainViewController alloc] initWithArtifactId:[[self.artifactList objectAtIndex:[indexPath row]] _id]];
     viewArtifactViewController.title = @"View Artifact Data";
 
     [self.navigationController pushViewController:viewArtifactViewController animated:YES];
     [viewArtifactViewController release];
+    
 }
 
 // For the PullToRefresh stuff

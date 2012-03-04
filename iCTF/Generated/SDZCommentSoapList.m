@@ -6,6 +6,8 @@
 #import "SDZCommentSoapList.h"
 
 #import "SDZArrayOf_tns1_CommentSoapRow.h"
+#import "SDZCommentSoapRow.h"
+
 @implementation SDZCommentSoapList
 	@synthesize dataRows = _dataRows;
 
@@ -25,12 +27,18 @@
 		return (SDZCommentSoapList*)[[[SDZCommentSoapList alloc] initWithNode: node] autorelease];
 	}
 
+
 	- (id) initWithNode: (CXMLNode*) node {
-		if(self = [super initWithNode: node])
-		{
-			self.dataRows = [[SDZArrayOf_tns1_CommentSoapRow newWithNode: [Soap getNode: node withName: @"dataRows"]] object];
-		}
-		return self;
+        if(self = [super initWithNode: node])
+        {
+            self.dataRows = [[NSMutableArray alloc] init];
+            CXMLNode* responseElem = [[node children] objectAtIndex:0];
+            CXMLNode* innerDataRowsElem = [[responseElem children] objectAtIndex:0];
+            for(CXMLNode* child in [innerDataRowsElem children]) {
+                [self.dataRows addObject:[[SDZCommentSoapRow newWithNode: child] object]];
+            }
+        }
+        return self;
 	}
 
 	- (NSMutableString*) serialize
